@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style type="text/css" media="screen">
+            body, html {
+                padding: 0;
+                margin: 0;
+            }
+            #editor {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            </style>
+    </head>
+    <body>
+        <div id="editor"></div>
+        <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var editor = ace.edit("editor");
+//            editor.setTheme("ace/theme/monokai");
+//            editor.getSession().setMode("ace/mode/html");
+        </script>
+    </body>
+</html>

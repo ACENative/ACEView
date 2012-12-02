@@ -1,0 +1,3 @@
+[submodule "ACEView/Dependencies/ace"]
+	path = ACEView/Dependencies/ace
+	url = https://github.com/ajaxorg/ace-builds.git
