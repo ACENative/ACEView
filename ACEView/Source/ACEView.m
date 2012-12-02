@@ -7,8 +7,10 @@
 //
 
 #import <WebKit/WebKit.h>
-#import <ACEView.h>
-#import <ACEModeNames.h>
+
+#import <ACEView/ACEView.h>
+#import <ACEView/ACEModeNames.h>
+#import <ACEView/ACEThemeNames.h>
 
 #define ACE_JAVASCRIPT_DIRECTORY @"___ACE_VIEW_JAVASCRIPT_DIRECTORY___"
 
@@ -118,8 +120,11 @@
     [self executeScriptsWhenLoaded:@[[NSString stringWithFormat:@"editor.setValue(\"%@\");", content], @"editor.clearSelection();"]];
 }
 
-- (void) setMode:(ACEViewMode)mode {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", ACEViewModeName[mode]]];
+- (void) setMode:(ACEMode)mode {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", [ACEModeNames nameForMode:mode]]];
+}
+- (void) setTheme:(ACETheme)theme {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
 }
 
 @end

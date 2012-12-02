@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 Code of Interest. All rights reserved.
 //
 
-#import "Foundation/Foundation.h"
-#import "ACEModes.h"
+#import <Foundation/Foundation.h>
+#import <ACEView/ACEModes.h>
+#import <ACEView/ACEThemes.h>
 
 @interface ACEView : NSView {
     
@@ -16,6 +17,7 @@
 - (NSString *) content;
 - (void) setContent:(NSString *)content;
 
-- (void) setMode:(ACEViewMode)mode;
+- (void) setMode:(ACEMode)mode;
+- (void) setTheme:(ACETheme)theme;
 
 @end
