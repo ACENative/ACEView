@@ -20,8 +20,18 @@
         <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/ace.js" type="text/javascript" charset="utf-8"></script>
         <script>
             var editor = ace.edit("editor");
-//            editor.setTheme("ace/theme/monokai");
-//            editor.getSession().setMode("ace/mode/html");
+            editor.commands.addCommands([{
+                name: "unfind",
+                bindKey: {
+                    win: "Ctrl-F",
+                    mac: "Command-F"
+                },
+                exec: function(editor, line) {
+                    window.ACEWebView.showFindInterface();
+                    return false;
+                },
+                readOnly: true
+            }]);
         </script>
     </body>
 </html>
