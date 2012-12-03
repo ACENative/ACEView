@@ -11,6 +11,10 @@
 		7C86C827166B4FD000AE3A57 /* ACEThemes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C826166B4FD000AE3A57 /* ACEThemes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C828166B506D00AE3A57 /* ACEThemeNames.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */; };
+		7C86C82F166C5F8300AE3A57 /* ACEWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C82D166C5F8200AE3A57 /* ACEWebView.m */; };
+		7C86C831166C5F9300AE3A57 /* ACEWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C830166C5F9300AE3A57 /* ACEWebView.h */; };
+		7C86C845166CCB0400AE3A57 /* NSView+ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */; };
+		7C86C848166CCB1E00AE3A57 /* NSView+ScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */; };
 		7C8A729015EA0769007E5EB8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728F15EA0769007E5EB8 /* Cocoa.framework */; };
 		7C8A72E215EA0F0E007E5EB8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728F15EA0769007E5EB8 /* Cocoa.framework */; };
 		7C8A72E815EA0F0E007E5EB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C8A72E615EA0F0E007E5EB8 /* InfoPlist.strings */; };
@@ -228,6 +232,10 @@
 		7C86C826166B4FD000AE3A57 /* ACEThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEThemes.h; path = Source/Utilities/Headers/ACEThemes.h; sourceTree = "<group>"; };
 		7C86C828166B506D00AE3A57 /* ACEThemeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEThemeNames.h; path = Source/Utilities/Headers/ACEThemeNames.h; sourceTree = "<group>"; };
 		7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEThemeNames.m; path = Source/Utilities/ACEThemeNames.m; sourceTree = "<group>"; };
+		7C86C82D166C5F8200AE3A57 /* ACEWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEWebView.m; path = Source/ACEWebView.m; sourceTree = "<group>"; };
+		7C86C830166C5F9300AE3A57 /* ACEWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEWebView.h; path = Source/Headers/ACEWebView.h; sourceTree = "<group>"; };
+		7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+ScrollView.m"; path = "Source/Categories/NSView+ScrollView.m"; sourceTree = "<group>"; };
+		7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+ScrollView.h"; path = "Source/Categories/Headers/NSView+ScrollView.h"; sourceTree = "<group>"; };
 		7C8A728C15EA0769007E5EB8 /* ACEView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ACEView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8A728F15EA0769007E5EB8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7C8A729215EA0769007E5EB8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -759,6 +767,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C86C846166CCB0900AE3A57 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
 		7C8A728015EA0769007E5EB8 = {
 			isa = PBXGroup;
 			children = (
@@ -1413,6 +1429,7 @@
 				7C9B66BF166AF4A800A24CB7 /* Utilities */,
 				7C9B66C0166AF4C100A24CB7 /* Headers */,
 				7C9B66BC166AF49F00A24CB7 /* ACEView.m */,
+				7C86C82D166C5F8200AE3A57 /* ACEWebView.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -1432,6 +1449,7 @@
 			isa = PBXGroup;
 			children = (
 				7C9B66C1166AF4C600A24CB7 /* ACEView.h */,
+				7C86C830166C5F9300AE3A57 /* ACEWebView.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1451,6 +1469,8 @@
 		7C9B66CC166AFAD000A24CB7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7C86C846166CCB0900AE3A57 /* Headers */,
+				7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1507,6 +1527,8 @@
 				7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */,
 				7C9B66C5166AF4E900A24CB7 /* ACELogger.h in Headers */,
 				7C9B66CB166AF5DF00A24CB7 /* ACEView-Prefix.pch in Headers */,
+				7C86C831166C5F9300AE3A57 /* ACEWebView.h in Headers */,
+				7C86C848166CCB1E00AE3A57 /* NSView+ScrollView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,6 +1629,8 @@
 				7C9B66C7166AF4F600A24CB7 /* ACELogger.m in Sources */,
 				7C86C825166B47AF00AE3A57 /* ACEModeNames.m in Sources */,
 				7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */,
+				7C86C82F166C5F8300AE3A57 /* ACEWebView.m in Sources */,
+				7C86C845166CCB0400AE3A57 /* NSView+ScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1709,6 +1733,8 @@
 		7C8A72A215EA0769007E5EB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1716,9 +1742,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACEView/ACEView-Prefix.pch";
 				INFOPLIST_FILE = "ACEView/ACEView-Info.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.7;
+				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -1726,6 +1754,8 @@
 		7C8A72A315EA0769007E5EB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1733,9 +1763,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACEView/ACEView-Prefix.pch";
 				INFOPLIST_FILE = "ACEView/ACEView-Info.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.7;
+				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
