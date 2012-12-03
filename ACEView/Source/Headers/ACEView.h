@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import <ACEView/ACEModes.h>
 #import <ACEView/ACEThemes.h>
 
+@class ACEWebView;
+
 @interface ACEView : NSView {
-    
+    ACEWebView *_webView;
+    CGColorRef _borderColor;
 }
 
 - (NSString *) content;
