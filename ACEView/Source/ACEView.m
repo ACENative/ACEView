@@ -7,27 +7,55 @@
 //
 
 #import <ACEView/ACEView.h>
-#import <ACEView/ACEWebView.h>
 #import <ACEView/ACEModeNames.h>
 #import <ACEView/ACEThemeNames.h>
+#import <ACEView/ACERange.h>
+
+#import <ACEView/NSView+ScrollView.h>
+#import <ACEView/NSString+EscapeForJavaScript.h>
 
 #define ACE_JAVASCRIPT_DIRECTORY @"___ACE_VIEW_JAVASCRIPT_DIRECTORY___"
 
 @interface ACEView() { }
 
 - (CGColorRef) borderColor;
-- (ACEWebView *) webView;
-- (void) initialiseWebView;
-- (void) embedWebView;
+
+- (void) executeScriptsWhenLoaded:(NSArray *)scripts;
+- (void) executeScriptWhenLoaded:(NSString *)script;
+
+- (void) showFindInterface;
+- (void) showReplaceInterface;
 
 @end
 
 @implementation ACEView
 
+@synthesize firstSelectedRange;
+
 #pragma mark - Internal
+- (id) initWithFrame:(NSRect)frame {
+    self = [super initWithFrame:frame];
+    if (self == nil) {
+        return nil;
+    }
+    
+    [self setFrameLoadDelegate:self];
+
+    return self;
+}
+
 - (void) awakeFromNib {
-    [self initialiseWebView];
-    [self embedWebView];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    
+    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
+    NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
+    
+    html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
+    
+    [[self mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
+    [self drawRect:[self frame]];
 }
 - (void) drawRect:(NSRect)rect {
     [self setWantsLayer:YES];
@@ -37,6 +65,44 @@
     [self.layer setBorderColor:[self borderColor]];
 
     [super drawRect:rect];
+}
++ (BOOL) isSelectorExcludedFromWebScript:(SEL)aSelector {
+    if (aSelector == @selector(showFindInterface)) {
+        return NO;
+    }
+    if (aSelector == @selector(showReplaceInterface)) {
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark - WebView delegate methods
+- (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+    textFinder = [[NSTextFinder alloc] init];
+    [textFinder setClient:self];
+    [textFinder setFindBarContainer:[self scrollView]];
+    
+    [[self windowScriptObject] setValue:self forKey:@"ACEWebView"];
+}
+
+#pragma mark - NSTextFinderClient methods
+- (void) performTextFinderAction:(id)sender {
+    [textFinder performAction:[sender tag]];
+}
+- (void) scrollRangeToVisible:(NSRange)range {
+    firstSelectedRange = range;
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:
+                                   @"editor.session.selection.clearSelection();"
+                                   @"editor.session.selection.setRange(new Range(%@));"
+                                   "editor.centerSelection()",
+                                   ACEStringFromRangeAndString(range, [self string])]];
+}
+- (void) replaceCharactersInRange:(NSRange)range withString:(NSString *)string {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.session.replace(new Range(%@), \"%@\");",
+                                    ACEStringFromRangeAndString(range, [self string]), [string stringByEscapingForJavaScript]]];
+}
+- (BOOL) isEditable {
+    return YES;
 }
 
 #pragma mark - Private
@@ -50,63 +116,48 @@
     }
     return _borderColor;
 }
-- (ACEWebView *) webView {
-    if (_webView == nil) {
-        _webView = [[ACEWebView alloc] initWithFrame:self.frame];
+
+- (void) executeScriptsWhenLoaded:(NSArray *)scripts {
+    if ([self isLoading]) {
+        [self performSelector:@selector(executeScriptsWhenLoaded:) withObject:scripts afterDelay:0.2];
+        return;
     }
-    return _webView;
+    [scripts enumerateObjectsUsingBlock:^(id script, NSUInteger index, BOOL *stop) {
+        [self stringByEvaluatingJavaScriptFromString:script];
+    }];
 }
-- (void) initialiseWebView {
-    WebView *webView = [self webView];
-    
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    
-    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
-    NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
-    
-    html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
-    
-    [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
+- (void) executeScriptWhenLoaded:(NSString *)script {
+    if ([self isLoading]) {
+        [self performSelector:@selector(executeScriptWhenLoaded:) withObject:script afterDelay:0.2];
+        return;
+    }
+    [self stringByEvaluatingJavaScriptFromString:script];
 }
-- (void) embedWebView {
-    WebView *webView = [self webView];
-    
-    [self setAutoresizesSubviews:YES];
-    [self addSubview:webView];
-    
-    [webView setAutoresizesSubviews:YES];
-    [webView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-    
-    // Reduce bounds by 1 to allow for border
-    NSRect bounds = NSMakeRect(self.bounds.origin.x - 1, self.bounds.origin.y - 1, self.bounds.size.width - 1, self.bounds.size.height - 1);
-    [webView setFrame:bounds];
+
+- (void) showFindInterface {
+    [textFinder performAction:NSTextFinderActionShowFindInterface];
+}
+- (void) showReplaceInterface {
+    [textFinder performAction:NSTextFinderActionShowReplaceInterface];
 }
 
 #pragma mark - Public
-- (NSString *) content {
-    return [[self webView] stringByEvaluatingJavaScriptFromString:@"editor.getValue()"];
+- (NSString *) string {
+    return [self stringByEvaluatingJavaScriptFromString:@"editor.getValue();"];
 }
-- (void) setContent:(NSString *)content {
-    NSString *jsonString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:@[content]
-                                                                                          options:0
-                                                                                            error:nil] encoding:NSUTF8StringEncoding];
-    
-    content = [jsonString substringWithRange:NSMakeRange(2, jsonString.length - 4)];
-    
-    [[self webView] executeScriptsWhenLoaded:@[
-        [NSString stringWithFormat:@"editor.setValue(\"%@\");", content],
+- (void) setString:(NSString *)string {
+    [self executeScriptsWhenLoaded:@[
+        [NSString stringWithFormat:@"editor.setValue(\"%@\");", [string stringByEscapingForJavaScript]],
         @"editor.clearSelection();",
         @"editor.moveCursorTo(0, 0);"
     ]];
 }
 
 - (void) setMode:(ACEMode)mode {
-    [[self webView] executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", [ACEModeNames nameForMode:mode]]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", [ACEModeNames nameForMode:mode]]];
 }
 - (void) setTheme:(ACETheme)theme {
-    [[self webView] executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
 }
 
 @end
