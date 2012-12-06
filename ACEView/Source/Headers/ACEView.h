@@ -6,20 +6,26 @@
 //  Copyright (c) 2012 Code of Interest. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 
 #import <ACEView/ACEModes.h>
 #import <ACEView/ACEThemes.h>
 
 @class ACEWebView;
 
-@interface ACEView : NSView {
-    ACEWebView *_webView;
+@interface ACEView : WebView <NSTextFinderClient> {
+    NSTextFinder *textFinder;
     CGColorRef _borderColor;
+    
+    NSRange firstSelectedRange;
 }
 
-- (NSString *) content;
-- (void) setContent:(NSString *)content;
+@property(readonly) NSRange firstSelectedRange;
+@property(readonly) NSString *string;
+
+#pragma mark - ACE interaction
+- (NSString *) string;
+- (void) setString:(NSString *)string;
 
 - (void) setMode:(ACEMode)mode;
 - (void) setTheme:(ACETheme)theme;
