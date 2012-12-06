@@ -21,7 +21,7 @@
         <script>
             var editor = ace.edit("editor");
             editor.commands.addCommands([{
-                name: "unfind",
+                name: "ACEFind",
                 bindKey: {
                     win: "Ctrl-F",
                     mac: "Command-F"
@@ -32,6 +32,19 @@
                 },
                 readOnly: true
             }]);
+            editor.commands.addCommands([{
+                name: "ACEReplace",
+                bindKey: {
+                    win: "Ctrl-Shift-F",
+                    mac: "Command-Shift-F"
+                },
+                exec: function(editor, line) {
+                    window.ACEWebView.showReplaceInterface();
+                    return false;
+                },
+                readOnly: true
+            }]);
+            var Range = require('ace/range').Range;
         </script>
     </body>
 </html>
