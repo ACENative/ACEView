@@ -17,7 +17,7 @@
     NSString *htmlFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"HTML5" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:htmlFilePath encoding:NSUTF8StringEncoding error:nil];
 
-    [aceView setContent:html];
+    [aceView setString:html];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
 }
