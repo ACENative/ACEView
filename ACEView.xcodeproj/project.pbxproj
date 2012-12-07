@@ -1549,6 +1549,7 @@
 				7C8A728A15EA0769007E5EB8 /* Resources */,
 				7CAF0CF015EBA7F300161329 /* Copy ACE HTML */,
 				7C9B66B0166AF19A00A24CB7 /* Copy ACE JavaScript */,
+				7CDE4151167202C500C9C715 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1623,6 +1624,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7CDE4151167202C500C9C715 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -r ${BUILD_DIR}/ACEView.framework ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C8A728715EA0769007E5EB8 /* Sources */ = {
