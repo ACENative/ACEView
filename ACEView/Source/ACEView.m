@@ -209,8 +209,15 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
 }
 
-- (void) setWrapContent:(BOOL)wrap {
+- (void) setWrappingBehavioursEnabled:(BOOL)wrap {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setWrapBehavioursEnabled(%@);", ACEStringFromBool(wrap)]];
+}
+- (void) setUseSoftWrap:(BOOL)wrap {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setUseWrapMode(%@);", ACEStringFromBool(wrap)]];
+}
+- (void) setWrapLimitRange:(NSRange)range {
+    [self setUseSoftWrap:YES];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setWrapLimitRange(%ld, %ld);", range.location, range.length]];
 }
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];

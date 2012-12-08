@@ -41,7 +41,9 @@ extern NSString *const ACETextDidEndEditingNotification;
 - (void) setMode:(ACEMode)mode;
 - (void) setTheme:(ACETheme)theme;
 
-- (void) setWrapContent:(BOOL)wrap;
+- (void) setWrappingBehavioursEnabled:(BOOL)wrap;
+- (void) setUseSoftWrap:(BOOL)wrap;
+- (void) setWrapLimitRange:(NSRange)range;
 - (void) setShowInvisibles:(BOOL)show;
 - (void) setShowFoldWidgets:(BOOL)show;
 - (void) setHighlightActiveLine:(BOOL)highlight;

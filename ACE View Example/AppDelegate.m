@@ -21,7 +21,6 @@
     [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
-    [aceView setWrapContent:YES];
     [aceView setShowInvisibles:YES];
 }
 
