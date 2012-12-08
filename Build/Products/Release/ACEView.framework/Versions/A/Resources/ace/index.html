@@ -27,7 +27,7 @@
                     mac: "Command-F"
                 },
                 exec: function(editor, line) {
-                    window.ACEWebView.showFindInterface();
+                    ACEView.showFindInterface();
                     return false;
                 },
                 readOnly: true
@@ -39,11 +39,17 @@
                     mac: "Command-Shift-F"
                 },
                 exec: function(editor, line) {
-                    window.ACEWebView.showReplaceInterface();
+                    ACEView.showReplaceInterface();
                     return false;
                 },
                 readOnly: true
             }]);
+            var reportChanges = true;
+            editor.on('change', function(delta) {
+                if (reportChanges) {
+                    ACEView.aceTextDidChange();
+                }
+            });
             var Range = require('ace/range').Range;
         </script>
     </body>

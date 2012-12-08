@@ -11,23 +11,50 @@
 #import <ACEView/ACEModes.h>
 #import <ACEView/ACEThemes.h>
 
-@class ACEWebView;
+extern NSString *const ACETextDidEndEditingNotification;
 
+#pragma mark - ACEViewDelegate
+@protocol ACEViewDelegate <NSObject>
+
+- (void) textDidChange:(NSNotification *)notification;
+
+@end
+
+#pragma mark - ACEView
 @interface ACEView : WebView <NSTextFinderClient> {
     NSTextFinder *textFinder;
     CGColorRef _borderColor;
     
+    BOOL focus;
+    
+    id delegate;
+    
     NSRange firstSelectedRange;
+    
 }
 
+@property (assign) id delegate;
 @property(readonly) NSRange firstSelectedRange;
 @property(readonly) NSString *string;
 
-#pragma mark - ACE interaction
+#pragma mark - ACEView interaction
 - (NSString *) string;
 - (void) setString:(NSString *)string;
 
 - (void) setMode:(ACEMode)mode;
 - (void) setTheme:(ACETheme)theme;
+
+- (void) setWrapContent:(BOOL)wrap;
+- (void) setShowInvisibles:(BOOL)show;
+- (void) setShowFoldWidgets:(BOOL)show;
+- (void) setHighlightActiveLine:(BOOL)highlight;
+- (void) setHighlightGutterLine:(BOOL)highlight;
+- (void) setHighlightSelectedWord:(BOOL)highlight;- (void) setDisplayIndentGuides:(BOOL)display;
+- (void) setFadeFoldWidgets:(BOOL)fade;
+- (void) setAnimatedScroll:(BOOL)animate;
+- (void) setPrintMarginColumn:(NSUInteger)column;
+- (void) setScrollSpeed:(NSUInteger)speed;
+- (void) setFontSize:(NSUInteger)size;
+
 
 @end

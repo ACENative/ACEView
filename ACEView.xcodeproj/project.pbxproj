@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C08C07C1672ED23000D4A97 /* NSInvocation+MainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */; };
+		7C08C07E1672ED30000D4A97 /* NSInvocation+MainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */; };
+		7C08C0821672FD92000D4A97 /* ACEStringFromBool.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */; settings = {ATTRIBUTES = (); }; };
 		7C86C825166B47AF00AE3A57 /* ACEModeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C823166B47AF00AE3A57 /* ACEModeNames.m */; };
 		7C86C827166B4FD000AE3A57 /* ACEThemes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C826166B4FD000AE3A57 /* ACEThemes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C828166B506D00AE3A57 /* ACEThemeNames.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -229,6 +232,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+MainThread.m"; path = "Source/Categories/NSInvocation+MainThread.m"; sourceTree = "<group>"; };
+		7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+MainThread.h"; path = "Source/Categories/Headers/NSInvocation+MainThread.h"; sourceTree = "<group>"; };
+		7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACEStringFromBool.h; path = Source/Utilities/Headers/ACEStringFromBool.h; sourceTree = "<group>"; };
 		7C86C823166B47AF00AE3A57 /* ACEModeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEModeNames.m; path = Source/Utilities/ACEModeNames.m; sourceTree = "<group>"; };
 		7C86C826166B4FD000AE3A57 /* ACEThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEThemes.h; path = Source/Utilities/Headers/ACEThemes.h; sourceTree = "<group>"; };
 		7C86C828166B506D00AE3A57 /* ACEThemeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEThemeNames.h; path = Source/Utilities/Headers/ACEThemeNames.h; sourceTree = "<group>"; };
@@ -772,6 +778,7 @@
 		7C86C846166CCB0900AE3A57 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */,
 				7C86C853166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h */,
 				7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */,
 			);
@@ -1464,6 +1471,7 @@
 				7C9B672A166B117100A24CB7 /* ACEModeNames.h */,
 				7C86C826166B4FD000AE3A57 /* ACEThemes.h */,
 				7C86C828166B506D00AE3A57 /* ACEThemeNames.h */,
+				7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1472,6 +1480,7 @@
 			isa = PBXGroup;
 			children = (
 				7C86C846166CCB0900AE3A57 /* Headers */,
+				7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */,
 				7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */,
 				7C86C850166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m */,
 			);
@@ -1532,7 +1541,9 @@
 				7C9B66CB166AF5DF00A24CB7 /* ACEView-Prefix.pch in Headers */,
 				7C86C848166CCB1E00AE3A57 /* NSView+ScrollView.h in Headers */,
 				7C86C84E166F184D00AE3A57 /* ACERange.h in Headers */,
+				7C08C0821672FD92000D4A97 /* ACEStringFromBool.h in Headers */,
 				7C86C854166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h in Headers */,
+				7C08C07E1672ED30000D4A97 /* NSInvocation+MainThread.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1549,7 +1560,6 @@
 				7C8A728A15EA0769007E5EB8 /* Resources */,
 				7CAF0CF015EBA7F300161329 /* Copy ACE HTML */,
 				7C9B66B0166AF19A00A24CB7 /* Copy ACE JavaScript */,
-				7CDE4151167202C500C9C715 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1625,22 +1635,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		7CDE4151167202C500C9C715 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -r ${BUILD_DIR}/ACEView.framework ";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		7C8A728715EA0769007E5EB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1652,6 +1646,7 @@
 				7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */,
 				7C86C845166CCB0400AE3A57 /* NSView+ScrollView.m in Sources */,
 				7C86C852166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m in Sources */,
+				7C08C07C1672ED23000D4A97 /* NSInvocation+MainThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
