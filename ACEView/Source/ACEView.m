@@ -13,10 +13,16 @@
 
 #import <ACEView/NSView+ScrollView.h>
 #import <ACEView/NSString+EscapeForJavaScript.h>
+#import <ACEView/NSInvocation+MainThread.h>
 
 #define ACE_JAVASCRIPT_DIRECTORY @"___ACE_VIEW_JAVASCRIPT_DIRECTORY___"
 
-@interface ACEView() { }
+#pragma mark - ACEViewDelegate
+NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotification";
+
+#pragma mark - ACEView private
+
+@interface ACEView()
 
 - (CGColorRef) borderColor;
 
@@ -26,11 +32,14 @@
 - (void) showFindInterface;
 - (void) showReplaceInterface;
 
+- (void) aceTextDidChange;
+
 @end
 
+#pragma mark - ACEView implementation
 @implementation ACEView
 
-@synthesize firstSelectedRange;
+@synthesize firstSelectedRange, delegate;
 
 #pragma mark - Internal
 - (id) initWithFrame:(NSRect)frame {
@@ -117,6 +126,20 @@
     return _borderColor;
 }
 
+- (NSString *) stringByEvaluatingJavaScriptOnMainThreadFromString:(NSString *)script {
+    SEL stringByEvaluatingJavascriptFromString = @selector(stringByEvaluatingJavaScriptFromString:);
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                [[self class] instanceMethodSignatureForSelector:stringByEvaluatingJavascriptFromString]];
+    [invocation setSelector:stringByEvaluatingJavascriptFromString];
+
+    [invocation setArgument:&script atIndex:2];
+    [invocation setTarget:self];
+    [invocation invokeOnMainThread];
+    
+    NSString *contentString;
+    [invocation getReturnValue:&contentString];
+    return contentString;
+}
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts {
     if ([self isLoading]) {
         [self performSelector:@selector(executeScriptsWhenLoaded:) withObject:scripts afterDelay:0.2];
@@ -141,9 +164,22 @@
     [textFinder performAction:NSTextFinderActionShowReplaceInterface];
 }
 
+- (void) aceTextDidChange {
+    NSNotification *textDidChangeNotification = [NSNotification notificationWithName:ACETextDidEndEditingNotification
+                                                                              object:self];
+    [[NSNotificationCenter defaultCenter] postNotification:textDidChangeNotification];
+    if (self.delegate == nil) {
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(textDidChange:)]) {
+        [self.delegate performSelector:@selector(textDidChange:) withObject:textDidChangeNotification];
+    }
+}
+
 #pragma mark - Public
 - (NSString *) string {
-    return [self stringByEvaluatingJavaScriptFromString:@"editor.getValue();"];
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getValue();"];
 }
 - (void) setString:(NSString *)string {
     [self executeScriptsWhenLoaded:@[

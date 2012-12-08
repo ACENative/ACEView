@@ -11,19 +11,31 @@
 #import <ACEView/ACEModes.h>
 #import <ACEView/ACEThemes.h>
 
-@class ACEWebView;
+extern NSString *const ACETextDidEndEditingNotification;
 
+#pragma mark - ACEViewDelegate
+@protocol ACEViewDelegate <NSObject>
+
+- (void) textDidChange:(NSNotification *)notification;
+
+@end
+
+#pragma mark - ACEView
 @interface ACEView : WebView <NSTextFinderClient> {
     NSTextFinder *textFinder;
     CGColorRef _borderColor;
     
+    id delegate;
+    
     NSRange firstSelectedRange;
+    
 }
 
+@property (assign) id delegate;
 @property(readonly) NSRange firstSelectedRange;
 @property(readonly) NSString *string;
 
-#pragma mark - ACE interaction
+#pragma mark - ACEView interaction
 - (NSString *) string;
 - (void) setString:(NSString *)string;
 
