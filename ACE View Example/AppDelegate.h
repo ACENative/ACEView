@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <ACEView/ACEView.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, ACEViewDelegate> {
     IBOutlet ACEView *aceView;
     
     IBOutlet NSPopUpButton *syntaxMode;

@@ -7,19 +7,22 @@
 //
 
 #import "AppDelegate.h"
-#import <ACEView/ACEModeNames.h>
-#import <ACEView/ACEThemeNames.h>
+#import "ACEView/ACEView.h"
+#import "ACEView/ACEModeNames.h"
+#import "ACEView/ACEThemeNames.h"
 
 @implementation AppDelegate
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Set ACEView's content
     NSString *htmlFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"HTML5" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:htmlFilePath encoding:NSUTF8StringEncoding error:nil];
 
     [aceView setString:html];
+    [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
+    [aceView setWrapContent:YES];
+    [aceView setShowInvisibles:YES];
 }
 
 - (void) awakeFromNib {
@@ -36,6 +39,10 @@
 
 - (IBAction) themeChanged:(id)sender {
     [aceView setTheme:[theme indexOfSelectedItem]];
+}
+
+- (void) textDidChange:(NSNotification *)notification {
+    // Handle text changes
 }
 
 @end
