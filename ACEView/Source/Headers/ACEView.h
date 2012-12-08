@@ -27,8 +27,7 @@ extern NSString *const ACETextDidEndEditingNotification;
     
     id delegate;
     
-    NSRange firstSelectedRange;
-    
+    NSRange firstSelectedRange;  
 }
 
 @property (assign) id delegate;
@@ -41,5 +40,18 @@ extern NSString *const ACETextDidEndEditingNotification;
 
 - (void) setMode:(ACEMode)mode;
 - (void) setTheme:(ACETheme)theme;
+
+- (void) setWrapContent:(BOOL)wrap;
+- (void) setShowInvisibles:(BOOL)show;
+- (void) setShowFoldWidgets:(BOOL)show;
+- (void) setHighlightActiveLine:(BOOL)highlight;
+- (void) setHighlightGutterLine:(BOOL)highlight;
+- (void) setHighlightSelectedWord:(BOOL)highlight;- (void) setDisplayIndentGuides:(BOOL)display;
+- (void) setFadeFoldWidgets:(BOOL)fade;
+- (void) setAnimatedScroll:(BOOL)animate;
+- (void) setPrintMarginColumn:(NSUInteger)column;
+- (void) setScrollSpeed:(NSUInteger)speed;
+- (void) setFontSize:(NSUInteger)size;
+
 
 @end

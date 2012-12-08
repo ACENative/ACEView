@@ -10,6 +10,7 @@
 #import <ACEView/ACEModeNames.h>
 #import <ACEView/ACEThemeNames.h>
 #import <ACEView/ACERange.h>
+#import <ACEView/ACEStringFromBool.h>
 
 #import <ACEView/NSView+ScrollView.h>
 #import <ACEView/NSString+EscapeForJavaScript.h>
@@ -21,16 +22,20 @@
 NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotification";
 
 #pragma mark - ACEView private
+static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView()
 
 - (CGColorRef) borderColor;
 
+- (NSString *) stringByEvaluatingJavaScriptOnMainThreadFromString:(NSString *)script;
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts;
 - (void) executeScriptWhenLoaded:(NSString *)script;
 
 - (void) showFindInterface;
 - (void) showReplaceInterface;
+
++ (NSArray *) allowedSelectorNamesForJavaScript;
 
 - (void) aceTextDidChange;
 
@@ -76,13 +81,7 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
     [super drawRect:rect];
 }
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)aSelector {
-    if (aSelector == @selector(showFindInterface)) {
-        return NO;
-    }
-    if (aSelector == @selector(showReplaceInterface)) {
-        return NO;
-    }
-    return YES;
+    return ![[ACEView allowedSelectorNamesForJavaScript] containsObject:NSStringFromSelector(aSelector)];
 }
 
 #pragma mark - WebView delegate methods
@@ -91,7 +90,7 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
     [textFinder setClient:self];
     [textFinder setFindBarContainer:[self scrollView]];
     
-    [[self windowScriptObject] setValue:self forKey:@"ACEWebView"];
+    [[self windowScriptObject] setValue:self forKey:@"ACEView"];
 }
 
 #pragma mark - NSTextFinderClient methods
@@ -164,6 +163,17 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
     [textFinder performAction:NSTextFinderActionShowReplaceInterface];
 }
 
++ (NSArray *) allowedSelectorNamesForJavaScript {
+    if (allowedSelectorNamesForJavaScript == nil) {
+        allowedSelectorNamesForJavaScript = @[
+            @"showFindInterface",
+            @"showReplaceInterface",
+            @"aceTextDidChange"
+        ];
+    }
+    return [allowedSelectorNamesForJavaScript retain];
+}
+
 - (void) aceTextDidChange {
     NSNotification *textDidChangeNotification = [NSNotification notificationWithName:ACETextDidEndEditingNotification
                                                                               object:self];
@@ -181,11 +191,14 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
 - (NSString *) string {
     return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getValue();"];
 }
-- (void) setString:(NSString *)string {
+- (void) setString:(id)string {
     [self executeScriptsWhenLoaded:@[
+        @"reportChanges = false;",
         [NSString stringWithFormat:@"editor.setValue(\"%@\");", [string stringByEscapingForJavaScript]],
         @"editor.clearSelection();",
-        @"editor.moveCursorTo(0, 0);"
+        @"editor.moveCursorTo(0, 0);",
+        @"reportChanges = true;",
+        @"ACEView.aceTextDidChange();"
     ]];
 }
 
@@ -194,6 +207,43 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
 }
 - (void) setTheme:(ACETheme)theme {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
+}
+
+- (void) setWrapContent:(BOOL)wrap {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setWrapBehavioursEnabled(%@);", ACEStringFromBool(wrap)]];
+}
+- (void) setShowInvisibles:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
+}
+- (void) setShowFoldWidgets:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowFoldWidgets(%@);", ACEStringFromBool(show)]];
+}
+- (void) setHighlightActiveLine:(BOOL)highlight {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setHighlightActiveLine(%@);", ACEStringFromBool(highlight)]];
+}
+- (void) setHighlightGutterLine:(BOOL)highlight {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setHighlightGutterLine(%@);", ACEStringFromBool(highlight)]];
+}
+- (void) setHighlightSelectedWord:(BOOL)highlight {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setHighlightSelectedWord(%@);", ACEStringFromBool(highlight)]];
+}
+- (void) setDisplayIndentGuides:(BOOL)display {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setDisplayIndentGuides(%@);", ACEStringFromBool(display)]];
+}
+- (void) setFadeFoldWidgets:(BOOL)fade {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFadeFoldWidgets(%@);", ACEStringFromBool(fade)]];
+}
+- (void) setAnimatedScroll:(BOOL)animate {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setAnimatedScroll(%@);", ACEStringFromBool(animate)]];
+}
+- (void) setPrintMarginColumn:(NSUInteger)column {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setPrintMarginColumn(%ld);", column]];
+}
+- (void) setScrollSpeed:(NSUInteger)speed {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setScrollSpeed(%ld);", speed]];
+}
+- (void) setFontSize:(NSUInteger)size {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize(%ld);", size]];
 }
 
 @end
