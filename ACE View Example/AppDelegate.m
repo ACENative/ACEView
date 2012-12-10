@@ -14,10 +14,11 @@
 @implementation AppDelegate
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
-    NSString *htmlFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"HTML5" ofType:@"html"];
-    NSString *html = [NSString stringWithContentsOfFile:htmlFilePath encoding:NSUTF8StringEncoding error:nil];
+//    NSString *htmlFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"HTML5" ofType:@"html"];
+//    NSString *html = [NSString stringWithContentsOfFile:htmlFilePath encoding:NSUTF8StringEncoding error:nil];
 
-    [aceView setString:html];
+    [aceView setString:[NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://github.com/faceleg/ACEView"] encoding:NSUTF8StringEncoding
+                                                   error:nil]];
     [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
@@ -42,6 +43,7 @@
 
 - (void) textDidChange:(NSNotification *)notification {
     // Handle text changes
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end
