@@ -63,5 +63,5 @@ NS_INLINE NSString *ACEStringFromRangeAndString(NSRange range, NSString *string)
     ACERange aceRange = ACEMakeRange(range, string);
     NSString *rangeString = [NSString stringWithFormat:@"%lu, %lu, %lu, %lu",
                              aceRange.row.start, aceRange.column.start, aceRange.row.end, aceRange.column.end];
-    return [rangeString autorelease];
+    return rangeString;
 }
