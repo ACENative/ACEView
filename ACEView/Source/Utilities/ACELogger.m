@@ -73,6 +73,9 @@
 #else
     printf("%s\n", [logString UTF8String]);
 #endif /* USE_NSLOG */
+    
+    [formattedString release];
+    [sourceFile release];
 }
 
 @end
