@@ -250,7 +250,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setScrollSpeed(%ld);", speed]];
 }
 - (void) setFontSize:(NSUInteger)size {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize(%ld);", size]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize('%ldpx');", size]];
 }
 
 @end
