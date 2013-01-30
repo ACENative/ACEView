@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36F169E316B9346C00E8965C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369548C316B8ED0C00DF75B9 /* SenTestingKit.framework */; };
+		36F169E416B9346C00E8965C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728F15EA0769007E5EB8 /* Cocoa.framework */; };
+		36F169EA16B9346C00E8965C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36F169E816B9346C00E8965C /* InfoPlist.strings */; };
+		36F169ED16B9346C00E8965C /* ACEView_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F169EC16B9346C00E8965C /* ACEView_Tests.m */; };
+		36F169F816B9374200E8965C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F169F616B9374200E8965C /* MainMenu.xib */; };
+		36F169F916B9375D00E8965C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F169F616B9374200E8965C /* MainMenu.xib */; };
 		7C08C07C1672ED23000D4A97 /* NSInvocation+MainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */; };
 		7C08C07E1672ED30000D4A97 /* NSInvocation+MainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */; };
 		7C08C0821672FD92000D4A97 /* ACEStringFromBool.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */; settings = {ATTRIBUTES = (); }; };
@@ -14,8 +20,6 @@
 		7C86C827166B4FD000AE3A57 /* ACEThemes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C826166B4FD000AE3A57 /* ACEThemes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C828166B506D00AE3A57 /* ACEThemeNames.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */; };
-		7C86C845166CCB0400AE3A57 /* NSView+ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */; };
-		7C86C848166CCB1E00AE3A57 /* NSView+ScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */; };
 		7C86C84E166F184D00AE3A57 /* ACERange.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C84D166F184C00AE3A57 /* ACERange.h */; };
 		7C86C852166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C86C850166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m */; };
 		7C86C854166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C86C853166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h */; };
@@ -24,8 +28,7 @@
 		7C8A72E815EA0F0E007E5EB8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C8A72E615EA0F0E007E5EB8 /* InfoPlist.strings */; };
 		7C8A72EA15EA0F0E007E5EB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8A72E915EA0F0E007E5EB8 /* main.m */; };
 		7C8A72EE15EA0F0E007E5EB8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7C8A72EC15EA0F0E007E5EB8 /* Credits.rtf */; };
-		7C8A72F115EA0F0E007E5EB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8A72F015EA0F0E007E5EB8 /* AppDelegate.m */; };
-		7C8A72F415EA0F0E007E5EB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C8A72F215EA0F0E007E5EB8 /* MainMenu.xib */; };
+		7C8A72F115EA0F0E007E5EB8 /* ACEViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8A72F015EA0F0E007E5EB8 /* ACEViewAppDelegate.m */; };
 		7C8A72F815EA0F28007E5EB8 /* ACEView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728C15EA0769007E5EB8 /* ACEView.framework */; };
 		7C8A72FA15EA0FCB007E5EB8 /* HTML5.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C8A72F915EA0FCB007E5EB8 /* HTML5.html */; };
 		7C8A72FF15EA1414007E5EB8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A72FE15EA1414007E5EB8 /* WebKit.framework */; };
@@ -232,6 +235,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		369548C316B8ED0C00DF75B9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		36F169E216B9346C00E8965C /* ACEViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACEViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36F169E716B9346C00E8965C /* ACEView Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACEView Tests-Info.plist"; sourceTree = "<group>"; };
+		36F169E916B9346C00E8965C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		36F169EB16B9346C00E8965C /* ACEView_Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACEView_Tests.h; sourceTree = "<group>"; };
+		36F169EC16B9346C00E8965C /* ACEView_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACEView_Tests.m; sourceTree = "<group>"; };
+		36F169EE16B9346C00E8965C /* ACEView Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACEView Tests-Prefix.pch"; sourceTree = "<group>"; };
+		36F169F716B9374200E8965C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+MainThread.m"; path = "Source/Categories/NSInvocation+MainThread.m"; sourceTree = "<group>"; };
 		7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+MainThread.h"; path = "Source/Categories/Headers/NSInvocation+MainThread.h"; sourceTree = "<group>"; };
 		7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACEStringFromBool.h; path = Source/Utilities/Headers/ACEStringFromBool.h; sourceTree = "<group>"; };
@@ -239,8 +250,6 @@
 		7C86C826166B4FD000AE3A57 /* ACEThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEThemes.h; path = Source/Utilities/Headers/ACEThemes.h; sourceTree = "<group>"; };
 		7C86C828166B506D00AE3A57 /* ACEThemeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEThemeNames.h; path = Source/Utilities/Headers/ACEThemeNames.h; sourceTree = "<group>"; };
 		7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEThemeNames.m; path = Source/Utilities/ACEThemeNames.m; sourceTree = "<group>"; };
-		7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+ScrollView.m"; path = "Source/Categories/NSView+ScrollView.m"; sourceTree = "<group>"; };
-		7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+ScrollView.h"; path = "Source/Categories/Headers/NSView+ScrollView.h"; sourceTree = "<group>"; };
 		7C86C84D166F184C00AE3A57 /* ACERange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACERange.h; path = Source/Utilities/Headers/ACERange.h; sourceTree = "<group>"; };
 		7C86C850166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+EscapeForJavaScript.m"; path = "Source/Categories/NSString+EscapeForJavaScript.m"; sourceTree = "<group>"; };
 		7C86C853166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+EscapeForJavaScript.h"; path = "Source/Categories/Headers/NSString+EscapeForJavaScript.h"; sourceTree = "<group>"; };
@@ -255,9 +264,8 @@
 		7C8A72E915EA0F0E007E5EB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C8A72EB15EA0F0E007E5EB8 /* ACE View Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACE View Example-Prefix.pch"; sourceTree = "<group>"; };
 		7C8A72ED15EA0F0E007E5EB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		7C8A72EF15EA0F0E007E5EB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		7C8A72F015EA0F0E007E5EB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7C8A72F315EA0F0E007E5EB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7C8A72EF15EA0F0E007E5EB8 /* ACEViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACEViewAppDelegate.h; sourceTree = "<group>"; };
+		7C8A72F015EA0F0E007E5EB8 /* ACEViewAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACEViewAppDelegate.m; sourceTree = "<group>"; };
 		7C8A72F915EA0FCB007E5EB8 /* HTML5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = HTML5.html; path = Content/HTML5.html; sourceTree = "<group>"; };
 		7C8A72FE15EA1414007E5EB8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		7C9B5F12166AEB9700A24CB7 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = html/index.html; sourceTree = "<group>"; };
@@ -754,6 +762,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		36F169DE16B9346C00E8965C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36F169E316B9346C00E8965C /* SenTestingKit.framework in Frameworks */,
+				36F169E416B9346C00E8965C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C8A728815EA0769007E5EB8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -775,12 +792,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36F169E516B9346C00E8965C /* ACEView Tests */ = {
+			isa = PBXGroup;
+			children = (
+				36F169EB16B9346C00E8965C /* ACEView_Tests.h */,
+				36F169EC16B9346C00E8965C /* ACEView_Tests.m */,
+				36F169E616B9346C00E8965C /* Supporting Files */,
+			);
+			path = "ACEView Tests";
+			sourceTree = "<group>";
+		};
+		36F169E616B9346C00E8965C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				36F169E716B9346C00E8965C /* ACEView Tests-Info.plist */,
+				36F169E816B9346C00E8965C /* InfoPlist.strings */,
+				36F169EE16B9346C00E8965C /* ACEView Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		7C86C846166CCB0900AE3A57 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */,
 				7C86C853166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h */,
-				7C86C847166CCB1E00AE3A57 /* NSView+ScrollView.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -790,6 +826,7 @@
 			children = (
 				7C8A729515EA0769007E5EB8 /* ACEView */,
 				7C8A72E315EA0F0E007E5EB8 /* ACE View Example */,
+				36F169E516B9346C00E8965C /* ACEView Tests */,
 				7C8A728E15EA0769007E5EB8 /* Frameworks */,
 				7C8A728D15EA0769007E5EB8 /* Products */,
 			);
@@ -800,6 +837,7 @@
 			children = (
 				7C8A728C15EA0769007E5EB8 /* ACEView.framework */,
 				7C8A72E015EA0F0E007E5EB8 /* ACE View Example.app */,
+				36F169E216B9346C00E8965C /* ACEViewTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -808,6 +846,7 @@
 			isa = PBXGroup;
 			children = (
 				7C8A728F15EA0769007E5EB8 /* Cocoa.framework */,
+				369548C316B8ED0C00DF75B9 /* SenTestingKit.framework */,
 				7C8A729115EA0769007E5EB8 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -848,9 +887,8 @@
 		7C8A72E315EA0F0E007E5EB8 /* ACE View Example */ = {
 			isa = PBXGroup;
 			children = (
-				7C8A72EF15EA0F0E007E5EB8 /* AppDelegate.h */,
-				7C8A72F015EA0F0E007E5EB8 /* AppDelegate.m */,
-				7C8A72F215EA0F0E007E5EB8 /* MainMenu.xib */,
+				7C8A72EF15EA0F0E007E5EB8 /* ACEViewAppDelegate.h */,
+				7C8A72F015EA0F0E007E5EB8 /* ACEViewAppDelegate.m */,
 				7C8A72E415EA0F0E007E5EB8 /* Supporting Files */,
 				7C8A72F915EA0FCB007E5EB8 /* HTML5.html */,
 			);
@@ -860,6 +898,7 @@
 		7C8A72E415EA0F0E007E5EB8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				36F169F616B9374200E8965C /* MainMenu.xib */,
 				7C8A72E515EA0F0E007E5EB8 /* ACE View Example-Info.plist */,
 				7C8A72E615EA0F0E007E5EB8 /* InfoPlist.strings */,
 				7C8A72E915EA0F0E007E5EB8 /* main.m */,
@@ -1481,7 +1520,6 @@
 			children = (
 				7C86C846166CCB0900AE3A57 /* Headers */,
 				7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */,
-				7C86C843166CCB0400AE3A57 /* NSView+ScrollView.m */,
 				7C86C850166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m */,
 			);
 			name = Categories;
@@ -1539,7 +1577,6 @@
 				7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */,
 				7C9B66C5166AF4E900A24CB7 /* ACELogger.h in Headers */,
 				7C9B66CB166AF5DF00A24CB7 /* ACEView-Prefix.pch in Headers */,
-				7C86C848166CCB1E00AE3A57 /* NSView+ScrollView.h in Headers */,
 				7C86C84E166F184D00AE3A57 /* ACERange.h in Headers */,
 				7C08C0821672FD92000D4A97 /* ACEStringFromBool.h in Headers */,
 				7C86C854166F4A2000AE3A57 /* NSString+EscapeForJavaScript.h in Headers */,
@@ -1550,6 +1587,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		36F169E116B9346C00E8965C /* ACEViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36F169EF16B9346C00E8965C /* Build configuration list for PBXNativeTarget "ACEViewTests" */;
+			buildPhases = (
+				36F169DD16B9346C00E8965C /* Sources */,
+				36F169DE16B9346C00E8965C /* Frameworks */,
+				36F169DF16B9346C00E8965C /* Resources */,
+				36F169E016B9346C00E8965C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ACEViewTests;
+			productName = "ACEView Tests";
+			productReference = 36F169E216B9346C00E8965C /* ACEViewTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		7C8A728B15EA0769007E5EB8 /* ACEView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C8A72A115EA0769007E5EB8 /* Build configuration list for PBXNativeTarget "ACEView" */;
@@ -1570,9 +1625,9 @@
 			productReference = 7C8A728C15EA0769007E5EB8 /* ACEView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7C8A72DF15EA0F0E007E5EB8 /* ACE View Example */ = {
+		7C8A72DF15EA0F0E007E5EB8 /* ACEVIewExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C8A72F515EA0F0E007E5EB8 /* Build configuration list for PBXNativeTarget "ACE View Example" */;
+			buildConfigurationList = 7C8A72F515EA0F0E007E5EB8 /* Build configuration list for PBXNativeTarget "ACEVIewExample" */;
 			buildPhases = (
 				7C8A72DC15EA0F0E007E5EB8 /* Sources */,
 				7C8A72DD15EA0F0E007E5EB8 /* Frameworks */,
@@ -1582,7 +1637,7 @@
 			);
 			dependencies = (
 			);
-			name = "ACE View Example";
+			name = ACEVIewExample;
 			productName = "ACE View Example";
 			productReference = 7C8A72E015EA0F0E007E5EB8 /* ACE View Example.app */;
 			productType = "com.apple.product-type.application";
@@ -1593,7 +1648,7 @@
 		7C8A728215EA0769007E5EB8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Code of Interest";
 			};
 			buildConfigurationList = 7C8A728515EA0769007E5EB8 /* Build configuration list for PBXProject "ACEView" */;
@@ -1609,12 +1664,22 @@
 			projectRoot = "";
 			targets = (
 				7C8A728B15EA0769007E5EB8 /* ACEView */,
-				7C8A72DF15EA0F0E007E5EB8 /* ACE View Example */,
+				7C8A72DF15EA0F0E007E5EB8 /* ACEVIewExample */,
+				36F169E116B9346C00E8965C /* ACEViewTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		36F169DF16B9346C00E8965C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36F169EA16B9346C00E8965C /* InfoPlist.strings in Resources */,
+				36F169F816B9374200E8965C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C8A728A15EA0769007E5EB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1628,14 +1693,38 @@
 			files = (
 				7C8A72E815EA0F0E007E5EB8 /* InfoPlist.strings in Resources */,
 				7C8A72EE15EA0F0E007E5EB8 /* Credits.rtf in Resources */,
-				7C8A72F415EA0F0E007E5EB8 /* MainMenu.xib in Resources */,
+				36F169F916B9375D00E8965C /* MainMenu.xib in Resources */,
 				7C8A72FA15EA0FCB007E5EB8 /* HTML5.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		36F169E016B9346C00E8965C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		36F169DD16B9346C00E8965C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36F169ED16B9346C00E8965C /* ACEView_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C8A728715EA0769007E5EB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1644,7 +1733,6 @@
 				7C9B66C7166AF4F600A24CB7 /* ACELogger.m in Sources */,
 				7C86C825166B47AF00AE3A57 /* ACEModeNames.m in Sources */,
 				7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */,
-				7C86C845166CCB0400AE3A57 /* NSView+ScrollView.m in Sources */,
 				7C86C852166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m in Sources */,
 				7C08C07C1672ED23000D4A97 /* NSInvocation+MainThread.m in Sources */,
 			);
@@ -1655,13 +1743,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C8A72EA15EA0F0E007E5EB8 /* main.m in Sources */,
-				7C8A72F115EA0F0E007E5EB8 /* AppDelegate.m in Sources */,
+				7C8A72F115EA0F0E007E5EB8 /* ACEViewAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		36F169E816B9346C00E8965C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36F169E916B9346C00E8965C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		36F169F616B9374200E8965C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36F169F716B9374200E8965C /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		7C8A72E615EA0F0E007E5EB8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1678,14 +1782,6 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		7C8A72F215EA0F0E007E5EB8 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7C8A72F315EA0F0E007E5EB8 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		7CAF0CFE15EBAA7C00161329 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1697,6 +1793,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		36F169F016B9346C00E8965C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(CONFIGURATION_BUILD_DIR)/ACEViewExample.app/Contents/MacOS/ACEViewExample";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/ACEView Tests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ACEView Tests/ACEView Tests-Prefix.pch";
+				INFOPLIST_FILE = "ACEView Tests/ACEView Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		36F169F116B9346C00E8965C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(CONFIGURATION_BUILD_DIR)/ACEViewExample.app/Contents/MacOS/ACEViewExample";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/ACEView Tests\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ACEView Tests/ACEView Tests-Prefix.pch";
+				INFOPLIST_FILE = "ACEView Tests/ACEView Tests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		7C8A729F15EA0769007E5EB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1817,6 +1961,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		36F169EF16B9346C00E8965C /* Build configuration list for PBXNativeTarget "ACEViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36F169F016B9346C00E8965C /* Debug */,
+				36F169F116B9346C00E8965C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		7C8A728515EA0769007E5EB8 /* Build configuration list for PBXProject "ACEView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1835,7 +1987,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C8A72F515EA0F0E007E5EB8 /* Build configuration list for PBXNativeTarget "ACE View Example" */ = {
+		7C8A72F515EA0F0E007E5EB8 /* Build configuration list for PBXNativeTarget "ACEVIewExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C8A72F615EA0F0E007E5EB8 /* Debug */,
