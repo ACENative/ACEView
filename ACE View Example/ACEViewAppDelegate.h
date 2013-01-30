@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <ACEView/ACEView.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, ACEViewDelegate> {
+@interface ACEViewAppDelegate : NSObject <NSApplicationDelegate, ACEViewDelegate> {
     IBOutlet ACEView *aceView;
     
     IBOutlet NSPopUpButton *syntaxMode;
@@ -17,6 +17,7 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet ACEView *aceView;
 
 - (IBAction) syntaxModeChanged:(id)sender;
 - (IBAction) themeChanged:(id)sender;

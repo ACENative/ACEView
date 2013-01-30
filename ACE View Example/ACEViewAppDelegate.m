@@ -6,19 +6,21 @@
 //  Copyright (c) 2012 Code of Interest. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ACEViewAppDelegate.h"
 #import "ACEView/ACEView.h"
 #import "ACEView/ACEModeNames.h"
 #import "ACEView/ACEThemeNames.h"
 
-@implementation AppDelegate
+@implementation ACEViewAppDelegate
+
+@synthesize aceView;
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
-//    NSString *htmlFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"HTML5" ofType:@"html"];
-//    NSString *html = [NSString stringWithContentsOfFile:htmlFilePath encoding:NSUTF8StringEncoding error:nil];
-
-    [aceView setString:[NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://github.com/faceleg/ACEView"] encoding:NSUTF8StringEncoding
-                                                   error:nil]];
+    NSString *htmlFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"HTML5" ofType:@"html"];
+    NSString *html = [NSString stringWithContentsOfFile:htmlFilePath encoding:NSUTF8StringEncoding error:nil];
+    [aceView setString:html];
+//    [aceView setString:[NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://github.com/faceleg/ACEView"] encoding:NSUTF8StringEncoding
+//                                                   error:nil]];
     [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
