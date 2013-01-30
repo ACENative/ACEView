@@ -21,16 +21,17 @@ extern NSString *const ACETextDidEndEditingNotification;
 @end
 
 #pragma mark - ACEView
-@interface ACEView : WebView <NSTextFinderClient> {
+@interface ACEView : NSScrollView <NSTextFinderClient> {
     NSTextFinder *textFinder;
     CGColorRef _borderColor;
+    WebView *webView;
     
     id delegate;
     
     NSRange firstSelectedRange;  
 }
 
-@property (assign) id delegate;
+@property(assign) id delegate;
 @property(readonly) NSRange firstSelectedRange;
 @property(readonly) NSString *string;
 

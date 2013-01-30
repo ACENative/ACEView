@@ -12,7 +12,6 @@
 #import <ACEView/ACERange.h>
 #import <ACEView/ACEStringFromBool.h>
 
-#import <ACEView/NSView+ScrollView.h>
 #import <ACEView/NSString+EscapeForJavaScript.h>
 #import <ACEView/NSInvocation+MainThread.h>
 
@@ -25,8 +24,6 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
 static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView()
-
-- (CGColorRef) borderColor;
 
 - (NSString *) stringByEvaluatingJavaScriptOnMainThreadFromString:(NSString *)script;
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts;
@@ -53,44 +50,51 @@ static NSArray *allowedSelectorNamesForJavaScript;
         return nil;
     }
     
-    [self setFrameLoadDelegate:self];
+    webView = [[WebView alloc] init];
+    [webView setFrameLoadDelegate:self];
 
     return self;
 }
 
 - (void) awakeFromNib {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    [self addSubview:webView];
+    [self setBorderType:NSBezelBorder];
     
+    textFinder = [[NSTextFinder alloc] init];
+    [textFinder setClient:self];
+    [textFinder setFindBarContainer:self];
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
+
     NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
     NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
-    
     html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
     
-    [[self mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
-    [self drawRect:[self frame]];
-}
-- (void) drawRect:(NSRect)rect {
-    [self setWantsLayer:YES];
-    self.layer.masksToBounds = YES;
-    self.layer.borderWidth = 1.0f;
-    
-    [self.layer setBorderColor:[self borderColor]];
-
-    [super drawRect:rect];
+    [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
 }
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)aSelector {
     return ![[ACEView allowedSelectorNamesForJavaScript] containsObject:NSStringFromSelector(aSelector)];
 }
 
-#pragma mark - WebView delegate methods
-- (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
-    textFinder = [[NSTextFinder alloc] init];
-    [textFinder setClient:self];
-    [textFinder setFindBarContainer:[self scrollView]];
+#pragma mark - NSView overrides
+- (void) resizeSubviewsWithOldSize:(NSSize)oldBoundsSize {
+    NSRect bounds = [self bounds];
+
+    id<NSTextFinderBarContainer> findBarContainer = [textFinder findBarContainer];
+    if ([findBarContainer isFindBarVisible]) {
+        CGFloat findBarHeight = [[findBarContainer findBarView] frame].size.height;
+        bounds.origin.y += findBarHeight;
+        bounds.size.height -= findBarHeight;
+    }
     
-    [[self windowScriptObject] setValue:self forKey:@"ACEView"];
+    [webView setFrame:NSMakeRect(bounds.origin.x + 1, bounds.origin.y + 1,
+                                 bounds.size.width - 2, bounds.size.height - 2)];
+}
+
+#pragma mark - WebView delegate methods
+- (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {    
+    [[webView windowScriptObject] setValue:self forKey:@"ACEView"];
 }
 
 #pragma mark - NSTextFinderClient methods
@@ -102,7 +106,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:
                                    @"editor.session.selection.clearSelection();"
                                    @"editor.session.selection.setRange(new Range(%@));"
-                                   "editor.centerSelection()",
+                                   @"editor.centerSelection()",
                                    ACEStringFromRangeAndString(range, [self string])]];
 }
 - (void) replaceCharactersInRange:(NSRange)range withString:(NSString *)string {
@@ -114,46 +118,36 @@ static NSArray *allowedSelectorNamesForJavaScript;
 }
 
 #pragma mark - Private
-- (CGColorRef) borderColor {
-    if (_borderColor == nil) {
-        NSColor *windowFrameColor = [[NSColor windowFrameColor] colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-        _borderColor = CGColorCreateGenericRGB([windowFrameColor redComponent],
-                                               [windowFrameColor greenComponent],
-                                               [windowFrameColor blueComponent],
-                                               [windowFrameColor alphaComponent]);
-    }
-    return _borderColor;
-}
-
 - (NSString *) stringByEvaluatingJavaScriptOnMainThreadFromString:(NSString *)script {
     SEL stringByEvaluatingJavascriptFromString = @selector(stringByEvaluatingJavaScriptFromString:);
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                [[self class] instanceMethodSignatureForSelector:stringByEvaluatingJavascriptFromString]];
+                                [[webView class] instanceMethodSignatureForSelector:stringByEvaluatingJavascriptFromString]];
     [invocation setSelector:stringByEvaluatingJavascriptFromString];
 
     [invocation setArgument:&script atIndex:2];
-    [invocation setTarget:self];
+    [invocation setTarget:webView];
     [invocation invokeOnMainThread];
     
     NSString *contentString;
     [invocation getReturnValue:&contentString];
+    
     return contentString;
 }
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts {
-    if ([self isLoading]) {
+    if ([webView isLoading]) {
         [self performSelector:@selector(executeScriptsWhenLoaded:) withObject:scripts afterDelay:0.2];
         return;
     }
     [scripts enumerateObjectsUsingBlock:^(id script, NSUInteger index, BOOL *stop) {
-        [self stringByEvaluatingJavaScriptFromString:script];
+        [webView stringByEvaluatingJavaScriptFromString:script];
     }];
 }
 - (void) executeScriptWhenLoaded:(NSString *)script {
-    if ([self isLoading]) {
+    if ([webView isLoading]) {
         [self performSelector:@selector(executeScriptWhenLoaded:) withObject:script afterDelay:0.2];
         return;
     }
-    [self stringByEvaluatingJavaScriptFromString:script];
+    [webView stringByEvaluatingJavaScriptFromString:script];
 }
 
 - (void) showFindInterface {
