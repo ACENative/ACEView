@@ -13,9 +13,14 @@
 
 extern NSString *const ACETextDidEndEditingNotification;
 
+/** The ACEViewDelegate protocol is implemented by objects that wish to monitor the ACEView for content changes. */
 #pragma mark - ACEViewDelegate
 @protocol ACEViewDelegate <NSObject>
 
+/** Posts a notification that the text has changed and forwards this message to the delegate if it responds.
+
+ @param notification The ACETextDidEndEditingNotification notification that is posted to the default notification center.
+ */
 - (void) textDidChange:(NSNotification *)notification;
 
 @end
