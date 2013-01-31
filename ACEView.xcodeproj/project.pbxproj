@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36D2B2BC16BA4EF9007E9B7C /* index.html in Copy ACE JavaScript */ = {isa = PBXBuildFile; fileRef = 7C9B5F12166AEB9700A24CB7 /* index.html */; };
 		36F169E316B9346C00E8965C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369548C316B8ED0C00DF75B9 /* SenTestingKit.framework */; };
 		36F169E416B9346C00E8965C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728F15EA0769007E5EB8 /* Cocoa.framework */; };
 		36F169EA16B9346C00E8965C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36F169E816B9346C00E8965C /* InfoPlist.strings */; };
@@ -32,7 +33,6 @@
 		7C8A72F815EA0F28007E5EB8 /* ACEView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728C15EA0769007E5EB8 /* ACEView.framework */; };
 		7C8A72FA15EA0FCB007E5EB8 /* HTML5.html in Resources */ = {isa = PBXBuildFile; fileRef = 7C8A72F915EA0FCB007E5EB8 /* HTML5.html */; };
 		7C8A72FF15EA1414007E5EB8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A72FE15EA1414007E5EB8 /* WebKit.framework */; };
-		7C9B5F14166AEBE600A24CB7 /* index.html in Copy ACE HTML */ = {isa = PBXBuildFile; fileRef = 7C9B5F12166AEB9700A24CB7 /* index.html */; };
 		7C9B66B1166AF1B300A24CB7 /* ace.js in Copy ACE JavaScript */ = {isa = PBXBuildFile; fileRef = 7C9B6559166AF17B00A24CB7 /* ace.js */; };
 		7C9B66BE166AF49F00A24CB7 /* ACEView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9B66BC166AF49F00A24CB7 /* ACEView.m */; };
 		7C9B66C2166AF4C600A24CB7 /* ACEView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9B66C1166AF4C600A24CB7 /* ACEView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,9 +130,10 @@
 		7C9B66B0166AF19A00A24CB7 /* Copy ACE JavaScript */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = ace/javascript;
+			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				36D2B2BC16BA4EF9007E9B7C /* index.html in Copy ACE JavaScript */,
 				7C9B66D1166B00D300A24CB7 /* ext-static_highlight.js in Copy ACE JavaScript */,
 				7C9B66D2166B00D300A24CB7 /* ext-textarea.js in Copy ACE JavaScript */,
 				7C9B66D3166B00D300A24CB7 /* keybinding-emacs.js in Copy ACE JavaScript */,
@@ -221,17 +222,6 @@
 			name = "Copy ACE JavaScript";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7CAF0CF015EBA7F300161329 /* Copy ACE HTML */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = ace;
-			dstSubfolderSpec = 7;
-			files = (
-				7C9B5F14166AEBE600A24CB7 /* index.html in Copy ACE HTML */,
-			);
-			name = "Copy ACE HTML";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -258,7 +248,7 @@
 		7C8A729215EA0769007E5EB8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		7C8A729315EA0769007E5EB8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7C8A729415EA0769007E5EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7C8A72E015EA0F0E007E5EB8 /* ACE View Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ACE View Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C8A72E015EA0F0E007E5EB8 /* ACE View Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ACE View Example.app"; path = ACEVIewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8A72E515EA0F0E007E5EB8 /* ACE View Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACE View Example-Info.plist"; sourceTree = "<group>"; };
 		7C8A72E715EA0F0E007E5EB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C8A72E915EA0F0E007E5EB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1613,7 +1603,6 @@
 				7C8A728815EA0769007E5EB8 /* Frameworks */,
 				7C8A728915EA0769007E5EB8 /* Headers */,
 				7C8A728A15EA0769007E5EB8 /* Resources */,
-				7CAF0CF015EBA7F300161329 /* Copy ACE HTML */,
 				7C9B66B0166AF19A00A24CB7 /* Copy ACE JavaScript */,
 			);
 			buildRules = (
@@ -1968,6 +1957,7 @@
 				36F169F116B9346C00E8965C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7C8A728515EA0769007E5EB8 /* Build configuration list for PBXProject "ACEView" */ = {
 			isa = XCConfigurationList;
