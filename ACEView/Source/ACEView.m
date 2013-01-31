@@ -65,11 +65,16 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [textFinder setFindBarContainer:self];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
 
-    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
+    // Unable to use pretty resource paths with CocoaPods
+	//	NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
+    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js"] stringByDeletingLastPathComponent];
+    
+	// Unable to use pretty resource paths with CocoaPods    
+	//	NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
+    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html"];    
     NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
-    html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
+	html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
     
     [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
 }
