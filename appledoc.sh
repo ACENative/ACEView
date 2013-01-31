@@ -18,5 +18,5 @@
 --ignore "ACELogger.h" \
 --ignore "NSInvocation+MainThread.h" \
 --ignore "NSString+EscapeForJavaScript.h" \
---index-desc "README.md" \
+--index-desc "appledoc.md" \
 ./ACEView
