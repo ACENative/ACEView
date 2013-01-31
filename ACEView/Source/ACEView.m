@@ -143,11 +143,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     }];
 }
 - (void) executeScriptWhenLoaded:(NSString *)script {
-    if ([webView isLoading]) {
-        [self performSelector:@selector(executeScriptWhenLoaded:) withObject:script afterDelay:0.2];
-        return;
-    }
-    [webView stringByEvaluatingJavaScriptFromString:script];
+    [self executeScriptsWhenLoaded:@[script]];
 }
 
 - (void) showFindInterface {
