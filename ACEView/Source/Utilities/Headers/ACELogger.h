@@ -1,5 +1,5 @@
 //
-//  ACELog.h
+//  ACELogger.h
 //
 //  Created by Koenraad Van Nieuwenhove on 26/08/08.
 //  Copyright 2008 CoCoa Crumbs. All rights reserved.
