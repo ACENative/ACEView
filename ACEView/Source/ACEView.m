@@ -49,7 +49,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     if (self == nil) {
         return nil;
     }
-    
+
     webView = [[WebView alloc] init];
     [webView setFrameLoadDelegate:self];
 
@@ -59,23 +59,23 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) awakeFromNib {
     [self addSubview:webView];
     [self setBorderType:NSBezelBorder];
-    
+
     textFinder = [[NSTextFinder alloc] init];
     [textFinder setClient:self];
     [textFinder setFindBarContainer:self];
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     // Unable to use pretty resource paths with CocoaPods
 	//	NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
     NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js"] stringByDeletingLastPathComponent];
-    
-	// Unable to use pretty resource paths with CocoaPods    
+
+	// Unable to use pretty resource paths with CocoaPods
 	//	NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
-    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html"];    
+    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
 	html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
-    
+
     [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
 }
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)aSelector {
@@ -92,13 +92,13 @@ static NSArray *allowedSelectorNamesForJavaScript;
         bounds.origin.y += findBarHeight;
         bounds.size.height -= findBarHeight;
     }
-    
+
     [webView setFrame:NSMakeRect(bounds.origin.x + 1, bounds.origin.y + 1,
                                  bounds.size.width - 2, bounds.size.height - 2)];
 }
 
 #pragma mark - WebView delegate methods
-- (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {    
+- (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
     [[webView windowScriptObject] setValue:self forKey:@"ACEView"];
 }
 
@@ -132,10 +132,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [invocation setArgument:&script atIndex:2];
     [invocation setTarget:webView];
     [invocation invokeOnMainThread];
-    
+
     NSString *contentString;
     [invocation getReturnValue:&contentString];
-    
+
     return contentString;
 }
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts {
@@ -176,7 +176,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     if (self.delegate == nil) {
         return;
     }
-    
+
     if ([self.delegate respondsToSelector:@selector(textDidChange:)]) {
         [self.delegate performSelector:@selector(textDidChange:) withObject:textDidChangeNotification];
     }
@@ -220,6 +220,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setShowFoldWidgets:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowFoldWidgets(%@);", ACEStringFromBool(show)]];
 }
+- (void) setFadeFoldWidgets:(BOOL)fade {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFadeFoldWidgets(%@);", ACEStringFromBool(fade)]];
+}
 - (void) setHighlightActiveLine:(BOOL)highlight {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setHighlightActiveLine(%@);", ACEStringFromBool(highlight)]];
 }
@@ -232,17 +235,14 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setDisplayIndentGuides:(BOOL)display {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setDisplayIndentGuides(%@);", ACEStringFromBool(display)]];
 }
-- (void) setFadeFoldWidgets:(BOOL)fade {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFadeFoldWidgets(%@);", ACEStringFromBool(fade)]];
-}
 - (void) setAnimatedScroll:(BOOL)animate {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setAnimatedScroll(%@);", ACEStringFromBool(animate)]];
 }
-- (void) setPrintMarginColumn:(NSUInteger)column {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setPrintMarginColumn(%ld);", column]];
-}
 - (void) setScrollSpeed:(NSUInteger)speed {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setScrollSpeed(%ld);", speed]];
+}
+- (void) setPrintMarginColumn:(NSUInteger)column {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setPrintMarginColumn(%ld);", column]];
 }
 - (void) setFontSize:(NSUInteger)size {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize('%ldpx');", size]];
