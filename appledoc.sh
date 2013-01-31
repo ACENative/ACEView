@@ -1,6 +1,6 @@
 /usr/local/bin/appledoc \
 --project-name "ACEView" \
---project-company "Code of Interest" \
+--project-company "Michael Robinson" \
 --company-id "com.codeofinterest" \
 --docset-atom-filename "ACEView.atom" \
 --docset-feed-url "http://faceleg.github.com/ACEView/%DOCSETATOMFILENAME" \
@@ -16,5 +16,7 @@
 --no-warn-invalid-crossref \
 --ignore "*.m" \
 --ignore "ACELogger.h" \
+--ignore "NSInvocation+MainThread.h" \
+--ignore "NSString+EscapeForJavaScript.h" \
 --index-desc "README.md" \
 ./ACEView
