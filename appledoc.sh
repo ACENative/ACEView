@@ -15,5 +15,6 @@
 --no-repeat-first-par \
 --no-warn-invalid-crossref \
 --ignore "*.m" \
+--ignore "ACELogger.h" \
 --index-desc "README.md" \
-.
+./ACEView
