@@ -17,7 +17,7 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet ACEView *aceView;
+@property (nonatomic) IBOutlet ACEView *aceView;
 
 - (IBAction) syntaxModeChanged:(id)sender;
 - (IBAction) themeChanged:(id)sender;
