@@ -7,6 +7,11 @@ Use the wonderful [ACE editor](http://ace.ajax.org/) in your Cocoa applications.
 
 For great justice.
 
+Documentation
+=============
+
+[Full API documentation](http://faceleg.github.com/ACEView/index.html).
+
 Usage
 =====
 
