@@ -29,6 +29,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts;
 - (void) executeScriptWhenLoaded:(NSString *)script;
 
+- (void) resizeWebView;
+
 - (void) showFindInterface;
 - (void) showReplaceInterface;
 
@@ -52,7 +54,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
     webView = [[WebView alloc] init];
     [webView setFrameLoadDelegate:self];
-
+    
     return self;
 }
 
@@ -60,6 +62,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self addSubview:webView];
     [self setBorderType:NSBezelBorder];
 
+    [self resizeWebView];
+    
     textFinder = [[NSTextFinder alloc] init];
     [textFinder setClient:self];
     [textFinder setFindBarContainer:self];
@@ -83,18 +87,12 @@ static NSArray *allowedSelectorNamesForJavaScript;
 }
 
 #pragma mark - NSView overrides
-- (void) resizeSubviewsWithOldSize:(NSSize)oldBoundsSize {
-    NSRect bounds = [self bounds];
-
-    id<NSTextFinderBarContainer> findBarContainer = [textFinder findBarContainer];
-    if ([findBarContainer isFindBarVisible]) {
-        CGFloat findBarHeight = [[findBarContainer findBarView] frame].size.height;
-        bounds.origin.y += findBarHeight;
-        bounds.size.height -= findBarHeight;
-    }
-
-    [webView setFrame:NSMakeRect(bounds.origin.x + 1, bounds.origin.y + 1,
-                                 bounds.size.width - 2, bounds.size.height - 2)];
+- (void) drawRect:(NSRect)dirtyRect {
+    [self resizeWebView];
+    [super drawRect:dirtyRect];
+}
+- (void) resizeSubviewsWithOldSize:(NSSize)oldSize {
+    [self resizeWebView];
 }
 
 #pragma mark - WebView delegate methods
@@ -151,11 +149,26 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptsWhenLoaded:@[script]];
 }
 
+- (void) resizeWebView {
+    NSRect bounds = [self bounds];
+    id<NSTextFinderBarContainer> findBarContainer = [textFinder findBarContainer];
+    if ([findBarContainer isFindBarVisible]) {
+        CGFloat findBarHeight = [[findBarContainer findBarView] frame].size.height;
+        bounds.origin.y += findBarHeight;
+        bounds.size.height -= findBarHeight;
+    }
+    
+    [webView setFrame:NSMakeRect(bounds.origin.x + 1, bounds.origin.y + 1,
+                                 bounds.size.width - 2, bounds.size.height - 2)];
+}
+
 - (void) showFindInterface {
     [textFinder performAction:NSTextFinderActionShowFindInterface];
+    [self resizeWebView];
 }
 - (void) showReplaceInterface {
     [textFinder performAction:NSTextFinderActionShowReplaceInterface];
+    [self resizeWebView];
 }
 
 + (NSArray *) allowedSelectorNamesForJavaScript {
