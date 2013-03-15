@@ -204,5 +204,14 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param size The new font size.
  */
 - (void) setFontSize:(NSUInteger)size;
+/** Moves the cursor to the specified line number, and also into the indiciated column.
+ 
+ Uses [editor.goToLine()].
+ 
+ @param lineNumber The line number to go to
+ @param lineNumber  column number to go to
+ @param animate If YES animates scolling
+ */
+- (void) gotoLine:(NSInteger)lineNumber column:(NSInteger)columnNumber animated:(BOOL)animate;
 
 @end
