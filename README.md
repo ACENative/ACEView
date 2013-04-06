@@ -61,3 +61,5 @@ Now, you could do something like this:
 
 @end
 ```
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/81c078a9a9421be5b86c7ac285c60853 "githalytics.com")](http://githalytics.com/faceleg/ACEView)
