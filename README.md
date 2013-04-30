@@ -63,3 +63,7 @@ Now, you could do something like this:
 ```
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/81c078a9a9421be5b86c7ac285c60853 "githalytics.com")](http://githalytics.com/faceleg/ACEView)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/faceleg/ACEView/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
