@@ -257,6 +257,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setPrintMarginColumn:(NSUInteger)column {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setPrintMarginColumn(%ld);", column]];
 }
+- (void) setShowPrintMargin:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowPrintMargin(%@);", ACEStringFromBool(show)]];
+}
 - (void) setFontSize:(NSUInteger)size {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize('%ldpx');", size]];
 }
