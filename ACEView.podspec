@@ -13,7 +13,6 @@ Pod::Spec.new do |s|
   s.authors      = { "Michael Robinson" => "mike@pagesofinterest.net", "AquarHEAD Lou" => "aquarhead@gmail.com" }
   s.source       = {
     :git => 'https://github.com/AquarHEAD/ACEView.git',
-    :tag => s.version.to_s,
     :submodules => true
   }
   s.platform     = :osx
