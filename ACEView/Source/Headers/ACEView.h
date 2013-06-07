@@ -205,11 +205,23 @@ extern NSString *const ACETextDidEndEditingNotification;
 - (void) setShowPrintMargin:(BOOL)show;
 /** Sets the font size.
 
- Uses [editor.setFontSize()](http://ace.ajax.org/#Editor.setFontSize).
+ Uses editor.setFontSize()
 
  @param size The new font size.
  */
 - (void) setFontSize:(NSUInteger)size;
+/**
+ 
+ Uses EditSession.setBreakpoint()
+ 
+ */
+- (void) setBreakpoint:(NSUInteger)row class:(NSString *)className;
+/**
+ 
+ Uses EditSession.setBreakpoints()
+ 
+ */
+- (void) setBreakpoints:(NSArray *)rows;
 /** Moves the cursor to the specified line number, and also into the indiciated column.
  
  Uses [editor.goToLine()].

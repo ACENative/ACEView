@@ -44,6 +44,10 @@
     [aceView setTheme:[theme indexOfSelectedItem]];
 }
 
+- (IBAction)breakpoint:(id)sender {
+    [aceView setBreakpoints:@[@0]];
+}
+
 - (void) textDidChange:(NSNotification *)notification {
     // Handle text changes
     NSLog(@"%s", __PRETTY_FUNCTION__);

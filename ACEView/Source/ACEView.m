@@ -263,7 +263,12 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setFontSize:(NSUInteger)size {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize('%ldpx');", size]];
 }
-
+- (void) setBreakpoint:(NSUInteger)row class:(NSString *)className {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setBreakpoint(%ld, \"%@\");", row, className]];
+}
+- (void)setBreakpoints:(NSArray *)rows {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setBreakpoints(%@);", rows]];
+}
 - (void) gotoLine:(NSInteger)lineNumber column:(NSInteger)columnNumber animated:(BOOL)animate {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.gotoLine(%ld, %ld, %@);", lineNumber, columnNumber, ACEStringFromBool(animate)]];
 }
