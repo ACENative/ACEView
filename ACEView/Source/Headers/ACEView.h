@@ -192,18 +192,36 @@ extern NSString *const ACETextDidEndEditingNotification;
 - (void) setScrollSpeed:(NSUInteger)speed;
 /** Sets the column defining where the print margin should be.
 
- Uses [editor.setPrintMarginColumn()](http://ace.ajax.org/#Editor.setPrintMarginColumn).
+ Uses [editor.setPrintMarginColumn()]( http://ace.ajax.org/#Editor.setPrintMarginColumn ).
 
  @param column The column on which the print margin should be drawn.
  */
 - (void) setPrintMarginColumn:(NSUInteger)column;
+/**
+ 
+ Uses [editor.setShowPrintMargin()]( http://ace.ajax.org/#api=editor&nav=setShowPrintMargin ).
+ 
+ */
+- (void) setShowPrintMargin:(BOOL)show;
 /** Sets the font size.
 
- Uses [editor.setFontSize()](http://ace.ajax.org/#Editor.setFontSize).
+ Uses editor.setFontSize()
 
  @param size The new font size.
  */
 - (void) setFontSize:(NSUInteger)size;
+/**
+ 
+ Uses EditSession.setBreakpoint()
+ 
+ */
+- (void) setBreakpoint:(NSUInteger)row class:(NSString *)className;
+/**
+ 
+ Uses EditSession.setBreakpoints()
+ 
+ */
+- (void) setBreakpoints:(NSArray *)rows;
 /** Moves the cursor to the specified line number, and also into the indiciated column.
  
  Uses [editor.goToLine()].

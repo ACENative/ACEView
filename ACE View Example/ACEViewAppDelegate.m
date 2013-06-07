@@ -24,6 +24,7 @@
     [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
+    [aceView setShowPrintMargin:NO];
     [aceView setShowInvisibles:YES];
 }
 
@@ -41,6 +42,10 @@
 
 - (IBAction) themeChanged:(id)sender {
     [aceView setTheme:[theme indexOfSelectedItem]];
+}
+
+- (IBAction)breakpoint:(id)sender {
+    [aceView setBreakpoints:@[@0]];
 }
 
 - (void) textDidChange:(NSNotification *)notification {
