@@ -24,6 +24,7 @@
     [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
+    [aceView setShowPrintMargin:NO];
     [aceView setShowInvisibles:YES];
 }
 
