@@ -17,6 +17,8 @@ Usage
 
 Using ACEView is about as easy as it gets. First add the ACEView framework to your project (see [linking library or framework](https://developer.apple.com/library/ios/#recipes/xcode_help-project_editor/Articles/AddingaLibrarytoaTarget.html#//apple_ref/doc/uid/TP40010155-CH17-SW1) for information on how to do this), then add a view to your XIB, and tell it to be an ACEView:
 
+*note that ACEView has some dependencies - either use CocoaPods or run: §git submodule update --init --recursive` inside the folder you cloned ACEView into.
+
 ![ACEView XIB](https://raw.github.com/faceleg/ACEView/master/Collateral/ace-xib.jpg)
 
 Make sure you've got an IBOutlet in your view controller, and bind that bad girl:
