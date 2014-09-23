@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
   s.platform     = :osx
   s.frameworks   = ['WebKit']
   s.resource     = ['ACEView/Dependencies/ace/src/*.js', 'ACEView/HTML/index.html']
-  s.source_files = 'ACEView/**/*.{h,m}'
+  s.source_files = 'ACEView/Source/**/*.{h,m}'
 end
