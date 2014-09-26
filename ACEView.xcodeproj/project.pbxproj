@@ -14,6 +14,9 @@
 		36F169ED16B9346C00E8965C /* ACEView_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F169EC16B9346C00E8965C /* ACEView_Tests.m */; };
 		36F169F816B9374200E8965C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F169F616B9374200E8965C /* MainMenu.xib */; };
 		36F169F916B9375D00E8965C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F169F616B9374200E8965C /* MainMenu.xib */; };
+		400DB09819D60B90003FFD07 /* ACEKeyboardHandlerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */; };
+		400DB09919D60E8F003FFD07 /* ACEKeyboardHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		400DB09A19D60E94003FFD07 /* ACEKeyboardHandlerNames.h in Headers */ = {isa = PBXBuildFile; fileRef = 400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C08C07C1672ED23000D4A97 /* NSInvocation+MainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */; };
 		7C08C07E1672ED30000D4A97 /* NSInvocation+MainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */; };
 		7C08C0821672FD92000D4A97 /* ACEStringFromBool.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */; settings = {ATTRIBUTES = (); }; };
@@ -233,6 +236,9 @@
 		36F169EC16B9346C00E8965C /* ACEView_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACEView_Tests.m; sourceTree = "<group>"; };
 		36F169EE16B9346C00E8965C /* ACEView Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACEView Tests-Prefix.pch"; sourceTree = "<group>"; };
 		36F169F716B9374200E8965C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACEKeyboardHandlers.h; path = Source/Utilities/Headers/ACEKeyboardHandlers.h; sourceTree = "<group>"; };
+		400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACEKeyboardHandlerNames.h; sourceTree = "<group>"; };
+		400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEKeyboardHandlerNames.m; path = Source/Utilities/ACEKeyboardHandlerNames.m; sourceTree = "<group>"; };
 		7C08C07B1672ED23000D4A97 /* NSInvocation+MainThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+MainThread.m"; path = "Source/Categories/NSInvocation+MainThread.m"; sourceTree = "<group>"; };
 		7C08C07D1672ED30000D4A97 /* NSInvocation+MainThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+MainThread.h"; path = "Source/Categories/Headers/NSInvocation+MainThread.h"; sourceTree = "<group>"; };
 		7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACEStringFromBool.h; path = Source/Utilities/Headers/ACEStringFromBool.h; sourceTree = "<group>"; };
@@ -1479,6 +1485,7 @@
 				7C9B66C6166AF4F600A24CB7 /* ACELogger.m */,
 				7C86C823166B47AF00AE3A57 /* ACEModeNames.m */,
 				7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */,
+				400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1501,6 +1508,8 @@
 				7C86C826166B4FD000AE3A57 /* ACEThemes.h */,
 				7C86C828166B506D00AE3A57 /* ACEThemeNames.h */,
 				7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */,
+				400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */,
+				400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1565,6 +1574,8 @@
 				7C9B672B166B117200A24CB7 /* ACEModeNames.h in Headers */,
 				7C86C827166B4FD000AE3A57 /* ACEThemes.h in Headers */,
 				7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */,
+				400DB09919D60E8F003FFD07 /* ACEKeyboardHandlers.h in Headers */,
+				400DB09A19D60E94003FFD07 /* ACEKeyboardHandlerNames.h in Headers */,
 				7C9B66C5166AF4E900A24CB7 /* ACELogger.h in Headers */,
 				7C9B66CB166AF5DF00A24CB7 /* ACEView-Prefix.pch in Headers */,
 				7C86C84E166F184D00AE3A57 /* ACERange.h in Headers */,
@@ -1723,6 +1734,7 @@
 				7C86C825166B47AF00AE3A57 /* ACEModeNames.m in Sources */,
 				7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */,
 				7C86C852166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m in Sources */,
+				400DB09819D60B90003FFD07 /* ACEKeyboardHandlerNames.m in Sources */,
 				7C08C07C1672ED23000D4A97 /* NSInvocation+MainThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,7 @@
     
     IBOutlet NSPopUpButton *syntaxMode;
     IBOutlet NSPopUpButton *theme;
+    IBOutlet NSPopUpButton *keyboardHandler;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -21,5 +22,6 @@
 
 - (IBAction) syntaxModeChanged:(id)sender;
 - (IBAction) themeChanged:(id)sender;
+- (IBAction) keyboardHandlerChanged:(id)sender;
 
 @end

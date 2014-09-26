@@ -10,6 +10,7 @@
 #import "ACEView/ACEView.h"
 #import "ACEView/ACEModeNames.h"
 #import "ACEView/ACEThemeNames.h"
+#import "ACEView/ACEKeyboardHandlerNames.h"
 
 @implementation ACEViewAppDelegate
 
@@ -24,6 +25,7 @@
     [aceView setDelegate:self];
     [aceView setMode:ACEModeHTML];
     [aceView setTheme:ACEThemeXcode];
+    [aceView setKeyboardHandler:ACEKeyboardHandlerAce];
     [aceView setShowPrintMargin:NO];
     [aceView setShowInvisibles:YES];
 }
@@ -34,6 +36,9 @@
     
     [theme addItemsWithTitles:[ACEThemeNames humanThemeNames]];
     [theme selectItemAtIndex:ACEThemeXcode];
+
+    [keyboardHandler addItemsWithTitles:[ACEKeyboardHandlerNames humanKeyboardHandlerNames]];
+    [keyboardHandler selectItemAtIndex:ACEKeyboardHandlerAce];
 }
 
 - (IBAction) syntaxModeChanged:(id)sender {
@@ -42,6 +47,10 @@
 
 - (IBAction) themeChanged:(id)sender {
     [aceView setTheme:[theme indexOfSelectedItem]];
+}
+
+- (IBAction) keyboardHandlerChanged:(id)sender {
+    [aceView setKeyboardHandler:[keyboardHandler indexOfSelectedItem]];
 }
 
 - (void) textDidChange:(NSNotification *)notification {

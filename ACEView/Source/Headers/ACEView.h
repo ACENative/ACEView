@@ -10,6 +10,7 @@
 
 #import <ACEView/ACEModes.h>
 #import <ACEView/ACEThemes.h>
+#import <ACEView/ACEKeyboardHandlers.h>
 
 extern NSString *const ACETextDidEndEditingNotification;
 
@@ -190,6 +191,15 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param speed the new scroll speed (in milliseconds).
  */
 - (void) setScrollSpeed:(NSUInteger)speed;
+/** Set the keyboard handler.
+
+ Uses [editor.setKeyboardHandler()]( http://ace.ajax.org/#Editor.setKeyboardHandler ).
+
+ @param theme The theme to set.
+ @see ACETheme
+ */
+- (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler;
+
 /** Sets the column defining where the print margin should be.
 
  Uses [editor.setPrintMarginColumn()]( http://ace.ajax.org/#Editor.setPrintMarginColumn ).
