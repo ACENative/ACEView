@@ -9,6 +9,7 @@
 #import <ACEView/ACEView.h>
 #import <ACEView/ACEModeNames.h>
 #import <ACEView/ACEThemeNames.h>
+#import <ACEView/ACEKeyboardHandlerNames.h>
 #import <ACEView/ACERange.h>
 #import <ACEView/ACEStringFromBool.h>
 
@@ -253,6 +254,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 }
 - (void) setScrollSpeed:(NSUInteger)speed {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setScrollSpeed(%ld);", speed]];
+}
+- (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setKeyboardHandler(%@);", [ACEKeyboardHandlerNames commandForKeyboardHandler:keyboardHandler]]];
 }
 - (void) setPrintMarginColumn:(NSUInteger)column {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setPrintMarginColumn(%ld);", column]];
