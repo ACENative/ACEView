@@ -26,7 +26,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView()
 
-- (NSString *) aceJavascriptDirectory;
+- (NSString *) aceJavascriptDirectoryPath;
 - (NSString *) htmlPageFilePath;
 
 - (NSString *) stringByEvaluatingJavaScriptOnMainThreadFromString:(NSString *)script;
