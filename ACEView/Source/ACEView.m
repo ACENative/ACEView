@@ -86,14 +86,12 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 - (NSString *) aceJavascriptDirectoryPath{
     // Unable to use pretty resource paths with CocoaPods
-    //	NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     return [[bundle pathForResource:@"ace" ofType:@"js"] stringByDeletingLastPathComponent];
 }
 
 - (NSString *) htmlPageFilePath{
     // Unable to use pretty resource paths with CocoaPods
-    //	NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     return [bundle pathForResource:@"index" ofType:@"html"];
 }
