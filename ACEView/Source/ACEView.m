@@ -26,6 +26,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView()
 
+- (NSString *) aceJavascriptDirectoryPath;
+- (NSString *) htmlPageFilePath;
+
 - (NSString *) stringByEvaluatingJavaScriptOnMainThreadFromString:(NSString *)script;
 - (void) executeScriptsWhenLoaded:(NSArray *)scripts;
 - (void) executeScriptWhenLoaded:(NSString *)script;
@@ -70,19 +73,31 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [textFinder setFindBarContainer:self];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    // Unable to use pretty resource paths with CocoaPods
-	//	NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
-    NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js"] stringByDeletingLastPathComponent];
-
-	// Unable to use pretty resource paths with CocoaPods
-	//	NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
-    NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html"];
+    
+    NSString *javascriptDirectory = [self aceJavascriptDirectoryPath];
+    
+    NSString *htmlPath = [self htmlPageFilePath];
+    
     NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
-	html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
-
+    html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
+    
     [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
 }
+
+- (NSString *) aceJavascriptDirectoryPath{
+    // Unable to use pretty resource paths with CocoaPods
+    //	NSString *javascriptDirectory = [[bundle pathForResource:@"ace" ofType:@"js" inDirectory:@"ace/javascript"] stringByDeletingLastPathComponent];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    return [[bundle pathForResource:@"ace" ofType:@"js"] stringByDeletingLastPathComponent];
+}
+
+- (NSString *) htmlPageFilePath{
+    // Unable to use pretty resource paths with CocoaPods
+    //	NSString *htmlPath = [bundle pathForResource:@"index" ofType:@"html" inDirectory:@"ace"];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    return [bundle pathForResource:@"index" ofType:@"html"];
+}
+
 + (BOOL) isSelectorExcludedFromWebScript:(SEL)aSelector {
     return ![[ACEView allowedSelectorNamesForJavaScript] containsObject:NSStringFromSelector(aSelector)];
 }
