@@ -52,6 +52,7 @@ extern NSString *const ACETextDidEndEditingNotification;
     CGColorRef _borderColor;
 	WebView *webView;
 
+    int padding;
     id delegate;
 
     NSRange firstSelectedRange;
