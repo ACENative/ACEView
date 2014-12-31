@@ -244,6 +244,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
 }
+- (void) setReadOnly:(BOOL)readOnly {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setReadOnly(%@);", ACEStringFromBool(readOnly)]];
+}
 - (void) setShowFoldWidgets:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowFoldWidgets(%@);", ACEStringFromBool(show)]];
 }

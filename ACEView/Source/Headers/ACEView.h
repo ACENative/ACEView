@@ -133,6 +133,12 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param show YES if inivisible characters are to be shown, NO otherwise.
  */
 - (void) setShowInvisibles:(BOOL)show;
+///** Set read only mode.
+//
+// Uses [editor.setReadOnly()](http://ace.ajax.org/#Editor.setReadOnly).
+//
+// */
+- (void) setReadOnly:(BOOL)readOnly;
 /** Show or hide folding widgets.
 
  Uses [editor.setShowFoldWidgets()](http://ace.ajax.org/#Editor.setShowFoldWidgets).
