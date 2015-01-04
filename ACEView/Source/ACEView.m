@@ -26,6 +26,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView()
 
+- (void) initWebView;
+
 - (NSString *) aceJavascriptDirectoryPath;
 - (NSString *) htmlPageFilePath;
 
@@ -50,15 +52,26 @@ static NSArray *allowedSelectorNamesForJavaScript;
 @synthesize firstSelectedRange, delegate;
 
 #pragma mark - Internal
-- (id) initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self == nil) {
-        return nil;
-    }
 
+- (void) initWebView
+{
     webView = [[WebView alloc] init];
     [webView setFrameLoadDelegate:self];
+}
+
+- (id) initWithFrame:(NSRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        [self initWebView];
+    }
     
+    return self;
+}
+
+- (id) initWithCoder:(NSCoder *)coder {
+    if ((self = [super initWithCoder:coder])) {
+        [self initWebView];
+    }
+
     return self;
 }
 
