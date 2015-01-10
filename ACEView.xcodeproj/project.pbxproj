@@ -235,6 +235,8 @@
 		36F169ED16B9346C00E8965C /* ACEView_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F169EC16B9346C00E8965C /* ACEView_Tests.m */; };
 		36F169F816B9374200E8965C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F169F616B9374200E8965C /* MainMenu.xib */; };
 		36F169F916B9375D00E8965C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F169F616B9374200E8965C /* MainMenu.xib */; };
+		3DE985751B60FFFF00741F64 /* ACESearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE985741B60FFFF00741F64 /* ACESearchItem.m */; };
+		3DE985771B61000D00741F64 /* ACESearchItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE985761B61000D00741F64 /* ACESearchItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		400DB09819D60B90003FFD07 /* ACEKeyboardHandlerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */; };
 		400DB09919D60E8F003FFD07 /* ACEKeyboardHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		400DB09A19D60E94003FFD07 /* ACEKeyboardHandlerNames.h in Headers */ = {isa = PBXBuildFile; fileRef = 400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2360,6 +2362,8 @@
 		36F169EC16B9346C00E8965C /* ACEView_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACEView_Tests.m; sourceTree = "<group>"; };
 		36F169EE16B9346C00E8965C /* ACEView Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACEView Tests-Prefix.pch"; sourceTree = "<group>"; };
 		36F169F716B9374200E8965C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3DE985741B60FFFF00741F64 /* ACESearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACESearchItem.m; path = Source/Utilities/ACESearchItem.m; sourceTree = "<group>"; };
+		3DE985761B61000D00741F64 /* ACESearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACESearchItem.h; path = Source/Utilities/Headers/ACESearchItem.h; sourceTree = "<group>"; };
 		400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACEKeyboardHandlers.h; path = Source/Utilities/Headers/ACEKeyboardHandlers.h; sourceTree = "<group>"; };
 		400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ACEKeyboardHandlerNames.h; path = Source/Utilities/Headers/ACEKeyboardHandlerNames.h; sourceTree = "<group>"; };
 		400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEKeyboardHandlerNames.m; path = Source/Utilities/ACEKeyboardHandlerNames.m; sourceTree = "<group>"; };
@@ -5393,6 +5397,7 @@
 				7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */,
 				400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */,
 				E1918F831AB354B400EDB5B0 /* ACEWebView.m */,
+				3DE985741B60FFFF00741F64 /* ACESearchItem.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -5418,6 +5423,7 @@
 				400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */,
 				400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */,
 				E1918F821AB354B400EDB5B0 /* ACEWebView.h */,
+				3DE985761B61000D00741F64 /* ACESearchItem.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -5494,6 +5500,7 @@
 				7C9B672B166B117200A24CB7 /* ACEModeNames.h in Headers */,
 				7C86C827166B4FD000AE3A57 /* ACEThemes.h in Headers */,
 				7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */,
+				3DE985771B61000D00741F64 /* ACESearchItem.h in Headers */,
 				400DB09919D60E8F003FFD07 /* ACEKeyboardHandlers.h in Headers */,
 				400DB09A19D60E94003FFD07 /* ACEKeyboardHandlerNames.h in Headers */,
 				7C9B66C5166AF4E900A24CB7 /* ACELogger.h in Headers */,
@@ -5647,6 +5654,7 @@
 				7C9B66BE166AF49F00A24CB7 /* ACEView.m in Sources */,
 				E1918F851AB354B400EDB5B0 /* ACEWebView.m in Sources */,
 				7C9B66C7166AF4F600A24CB7 /* ACELogger.m in Sources */,
+				3DE985751B60FFFF00741F64 /* ACESearchItem.m in Sources */,
 				7C86C825166B47AF00AE3A57 /* ACEModeNames.m in Sources */,
 				7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */,
 				7C86C852166F4A0E00AE3A57 /* NSString+EscapeForJavaScript.m in Sources */,

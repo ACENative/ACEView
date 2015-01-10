@@ -12,6 +12,7 @@
 #import <ACEView/ACEKeyboardHandlerNames.h>
 #import <ACEView/ACERange.h>
 #import <ACEView/ACEStringFromBool.h>
+#import <ACEView/ACESearchItem.h>
 
 #import <ACEView/NSString+EscapeForJavaScript.h>
 #import <ACEView/NSInvocation+MainThread.h>
@@ -265,6 +266,17 @@ static NSArray *allowedSelectorNamesForJavaScript;
     }
 }
 
+- (NSString*) getSearchOptions:(NSDictionary*)options {
+    NSError *error = nil;
+    NSData *json = [NSJSONSerialization dataWithJSONObject:options options:nil error:&error];
+    
+    if (error || !json) {
+        return nil;
+    }
+    
+    return [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+}
+
 #pragma mark - Public
 - (NSString *) string {
     return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getValue();"];
@@ -374,6 +386,18 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 - (NSString*) getLine:(NSInteger)line {
     return [self stringByEvaluatingJavaScriptOnMainThreadFromString:[NSString stringWithFormat:@"editor.getSession().getLine(%ld);", line]];
+}
+
+- (NSArray*) findAll:(NSDictionary*) options {
+    NSString* stringOptions = [self getSearchOptions:options];
+    NSString* script = [NSString stringWithFormat:@"JSON.stringify(new Search().set(%@).findAll(editor.getSession()));", stringOptions];
+    
+    return [ACESearchItem fromString:[self stringByEvaluatingJavaScriptOnMainThreadFromString:script]];
+}
+
+- (void) replaceAll:(NSString*) replacement options:(NSDictionary*)options {
+    NSString* stringOptions = [self getSearchOptions:options];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.replaceAll(\"%@\", %@);", replacement, stringOptions]];
 }
 
 #pragma mark - Printing
