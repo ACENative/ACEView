@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Code of Interest. All rights reserved.
 //
 
-enum {
+typedef NS_ENUM(NSUInteger, ACETheme) {
     ACEThemeAmbiance = 0,
     ACEThemeChrome,
     ACEThemeClouds,
@@ -38,5 +38,3 @@ enum {
     
     ACEThemeCount,  // keep track of the enum size automatically
 };
-
-typedef NSUInteger ACETheme;
