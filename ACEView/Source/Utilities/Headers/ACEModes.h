@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Code of Interest. All rights reserved.
 //
 
-enum {
+typedef NS_ENUM(NSUInteger, ACEMode) {
     ACEModeASCIIDoc = 0,
     ACEModeC9Search,
     ACEModeCPP,
@@ -56,5 +56,3 @@ enum {
     
     ACEModeCount,  // keep track of the enum size automatically
 };
-
-typedef NSUInteger ACEMode;
