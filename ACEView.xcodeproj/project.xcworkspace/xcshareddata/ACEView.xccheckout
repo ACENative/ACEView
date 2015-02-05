@@ -22,7 +22,7 @@
 		<key>378B54B5205DE31B3B2EBDA14687C757C53E503B</key>
 		<string>../..</string>
 		<key>6AA9B563339F4175433F6583E018B0E6CF800437</key>
-		<string>../..ACEView/Dependencies/ace/</string>
+		<string>../..ACEView/Dependencies/ace</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:faceleg/ACEView.git</string>
