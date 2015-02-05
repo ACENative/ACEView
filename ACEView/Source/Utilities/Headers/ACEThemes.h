@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, ACETheme) {
     ACEThemeEclipse,
     ACEThemeGithub,
     ACEThemeIdleFingers,
-    ACEThemeKr,
     ACEThemeMerbivore,
     ACEThemeMerbivoreSoft,
     ACEThemeMonoIndustrial,
