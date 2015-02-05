@@ -28,6 +28,10 @@
     [aceView setKeyboardHandler:ACEKeyboardHandlerAce];
     [aceView setShowPrintMargin:NO];
     [aceView setShowInvisibles:YES];
+    [aceView setBasicAutoCompletion:YES];
+    [aceView setLiveAutocompletion:YES];
+    [aceView setSnippets:YES];
+    [aceView setEmmet: YES];
 }
 
 - (void) awakeFromNib {
