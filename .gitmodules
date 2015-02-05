@@ -1,3 +1,6 @@
 [submodule "ACEView/Dependencies/ace"]
 	path = ACEView/Dependencies/ace
 	url = https://github.com/ajaxorg/ace-builds.git
+[submodule "ACEView/Dependencies/emmet"]
+	path = ACEView/Dependencies/emmet
+	url = https://github.com/nightwing/emmet-core.git
