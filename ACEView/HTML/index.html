@@ -17,11 +17,17 @@
     </head>
     <body>
         <div id="editor"></div>
+        <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/emmet.js" type="text/javascript" charset="utf-8"></script>
         <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/ace.js" type="text/javascript" charset="utf-8"></script>
         <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/keybinding-vim.js" type="text/javascript" charset="utf-8"></script>
         <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/keybinding-emacs.js" type="text/javascript" charset="utf-8"></script>
+        <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+        <script src="___ACE_VIEW_JAVASCRIPT_DIRECTORY___/ext-emmet.js" type="text/javascript" charset="utf-8"></script>
         <script>
-            var editor = ace.edit("editor");
+            ace.config.set("basePath", "___ACE_VIEW_JAVASCRIPT_DIRECTORY___");
+            ace.require("ace/ext/language_tools");
+            ace.require("ace/ext/emmet");
+            editor = ace.edit("editor");
             editor.commands.addCommands([{
                 name: "ACEFind",
                 bindKey: {
