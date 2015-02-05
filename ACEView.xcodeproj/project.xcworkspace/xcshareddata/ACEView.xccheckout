@@ -14,6 +14,8 @@
 		<string>github.com:faceleg/ACEView.git</string>
 		<key>6AA9B563339F4175433F6583E018B0E6CF800437</key>
 		<string>https://github.com/ajaxorg/ace-builds.git</string>
+		<key>CFA80E453EAD7275D9BD3697BF2F88317692D696</key>
+		<string>https://github.com/nightwing/emmet-core.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ACEView.xcodeproj</string>
@@ -23,6 +25,8 @@
 		<string>../..</string>
 		<key>6AA9B563339F4175433F6583E018B0E6CF800437</key>
 		<string>../..ACEView/Dependencies/ace</string>
+		<key>CFA80E453EAD7275D9BD3697BF2F88317692D696</key>
+		<string>../../ACEView/Dependencies/emmet/</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:faceleg/ACEView.git</string>
@@ -47,6 +51,14 @@
 			<string>378B54B5205DE31B3B2EBDA14687C757C53E503B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ACEView</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CFA80E453EAD7275D9BD3697BF2F88317692D696</string>
+			<key>IDESourceControlWCCName</key>
+			<string>emmet</string>
 		</dict>
 	</array>
 </dict>

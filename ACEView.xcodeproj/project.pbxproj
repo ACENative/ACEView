@@ -226,6 +226,8 @@
 		361CE82E1A837BF4007743D0 /* xml.js in Copy ACE Snippets */ = {isa = PBXBuildFile; fileRef = 361CDF791A837923007743D0 /* xml.js */; };
 		361CE82F1A837BF4007743D0 /* xquery.js in Copy ACE Snippets */ = {isa = PBXBuildFile; fileRef = 361CDF7A1A837923007743D0 /* xquery.js */; };
 		361CE8301A837BF4007743D0 /* yaml.js in Copy ACE Snippets */ = {isa = PBXBuildFile; fileRef = 361CDF7B1A837923007743D0 /* yaml.js */; };
+		361CE8341A838231007743D0 /* emmet.js in Resources */ = {isa = PBXBuildFile; fileRef = 361CE8321A838231007743D0 /* emmet.js */; };
+		361CE8361A838247007743D0 /* emmet.js in Copy ACE JavaScript */ = {isa = PBXBuildFile; fileRef = 361CE8321A838231007743D0 /* emmet.js */; };
 		36D2B2BC16BA4EF9007E9B7C /* index.html in Copy ACE JavaScript */ = {isa = PBXBuildFile; fileRef = 7C9B5F12166AEB9700A24CB7 /* index.html */; };
 		36F169E316B9346C00E8965C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369548C316B8ED0C00DF75B9 /* SenTestingKit.framework */; };
 		36F169E416B9346C00E8965C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8A728F15EA0769007E5EB8 /* Cocoa.framework */; };
@@ -494,6 +496,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				361CE8361A838247007743D0 /* emmet.js in Copy ACE JavaScript */,
 				7C9B66B1166AF1B300A24CB7 /* ace.js in Copy ACE JavaScript */,
 				361CE7551A8379B8007743D0 /* ext-beautify.js in Copy ACE JavaScript */,
 				361CE7561A8379B8007743D0 /* ext-chromevox.js in Copy ACE JavaScript */,
@@ -2345,6 +2348,8 @@
 		361CE2021A837925007743D0 /* worker-php.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "worker-php.js"; sourceTree = "<group>"; };
 		361CE2031A837925007743D0 /* worker-xquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "worker-xquery.js"; sourceTree = "<group>"; };
 		361CE2061A837925007743D0 /* ace-bookmarklet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "ace-bookmarklet.js"; sourceTree = "<group>"; };
+		361CE8321A838231007743D0 /* emmet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = emmet.js; sourceTree = "<group>"; };
+		361CE8331A838231007743D0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		369548C316B8ED0C00DF75B9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		36F169E216B9346C00E8965C /* ACEViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACEViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36F169E716B9346C00E8965C /* ACEView Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ACEView Tests-Info.plist"; sourceTree = "<group>"; };
@@ -4495,6 +4500,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		361CE8311A838231007743D0 /* emmet */ = {
+			isa = PBXGroup;
+			children = (
+				361CE8321A838231007743D0 /* emmet.js */,
+				361CE8331A838231007743D0 /* README.md */,
+			);
+			path = emmet;
+			sourceTree = "<group>";
+		};
 		36F169E516B9346C00E8965C /* ACEView Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -5415,6 +5429,7 @@
 		7CAF085F15EBA74900161329 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				361CE8311A838231007743D0 /* emmet */,
 				7CAF086015EBA74900161329 /* ace */,
 			);
 			path = Dependencies;
@@ -5584,6 +5599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C8A72E815EA0F0E007E5EB8 /* InfoPlist.strings in Resources */,
+				361CE8341A838231007743D0 /* emmet.js in Resources */,
 				7C8A72EE15EA0F0E007E5EB8 /* Credits.rtf in Resources */,
 				36F169F916B9375D00E8965C /* MainMenu.xib in Resources */,
 				7C8A72FA15EA0FCB007E5EB8 /* HTML5.html in Resources */,
