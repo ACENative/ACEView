@@ -288,13 +288,13 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableBasicAutocompletion', %@);", ACEStringFromBool(autocomplete)]];
 }
 - (void) setSnippets:(BOOL)snippets {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions('enableSnippets', %@);", ACEStringFromBool(snippets)]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableSnippets', %@);", ACEStringFromBool(snippets)]];
 }
 - (void) setLiveAutocompletion:(BOOL)liveAutocompletion {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions('enableLiveAutocompletion', %@);", ACEStringFromBool(liveAutocompletion)]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableLiveAutocompletion', %@);", ACEStringFromBool(liveAutocompletion)]];
 }
 - (void) setEmmet:(BOOL)emmet {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions('enableEmmet, %@);", ACEStringFromBool(emmet)]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableEmmet, %@);", ACEStringFromBool(emmet)]];
 }
 - (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setKeyboardHandler(%@);", [ACEKeyboardHandlerNames commandForKeyboardHandler:keyboardHandler]]];
