@@ -97,7 +97,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
 }
 
-- (NSString *) aceJavascriptDirectoryPath{
+- (NSString *) aceJavascriptDirectoryPath {
     // Unable to use pretty resource paths with CocoaPods
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     return [[bundle pathForResource:@"ace" ofType:@"js"] stringByDeletingLastPathComponent];
@@ -283,6 +283,18 @@ static NSArray *allowedSelectorNamesForJavaScript;
 }
 - (void) setScrollSpeed:(NSUInteger)speed {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setScrollSpeed(%ld);", speed]];
+}
+- (void) setBasicAutoCompletion:(BOOL)autocomplete {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableBasicAutocompletion', %@);", ACEStringFromBool(autocomplete)]];
+}
+- (void) setSnippets:(BOOL)snippets {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions('enableSnippets', %@);", ACEStringFromBool(snippets)]];
+}
+- (void) setLiveAutocompletion:(BOOL)liveAutocompletion {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions('enableLiveAutocompletion', %@);", ACEStringFromBool(liveAutocompletion)]];
+}
+- (void) setEmmet:(BOOL)emmet {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions('enableEmmet, %@);", ACEStringFromBool(emmet)]];
 }
 - (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setKeyboardHandler(%@);", [ACEKeyboardHandlerNames commandForKeyboardHandler:keyboardHandler]]];

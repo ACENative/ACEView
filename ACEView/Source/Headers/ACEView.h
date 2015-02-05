@@ -206,7 +206,34 @@ extern NSString *const ACETextDidEndEditingNotification;
  @see ACETheme
  */
 - (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler;
-
+/** Enable basic autocomplete.
+ 
+ User [editor.setOptions({ enableBasicAutocompletion: BOOL })]
+ 
+ @param autocomplete YES if basic autocomplete should be enabled, NO otherwise.
+ */
+- (void) setBasicAutoCompletion:(BOOL)autocompletion;
+/** Enable live autocompletion.
+ 
+ User [editor.setOptions({ enableLiveAutocompletion: BOOL })]
+ 
+ @param liveAutocompletion YES if live autocompletion should be enabled, NO otherwise.
+ */
+- (void) setLiveAutocompletion:(BOOL)liveAutocompletion;
+/** Enable snippets.
+ 
+ User [editor.setOptions({ enableSnippets: BOOL })]
+ 
+ @param snippets YES if snippets should be enabled, NO otherwise.
+ */
+- (void) setSnippets:(BOOL)snippets;
+/** Enable emmet.
+ 
+ User [editor.setOptions({ emmet: BOOL })]
+ 
+ @param emmet YES if emmet should be enabled, NO otherwise.
+ */
+- (void) setEmmet:(BOOL)emmet;
 /** Sets the column defining where the print margin should be.
 
  Uses [editor.setPrintMarginColumn()]( http://ace.ajax.org/#Editor.setPrintMarginColumn ).
