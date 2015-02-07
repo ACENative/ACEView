@@ -26,7 +26,7 @@
 		<key>6AA9B563339F4175433F6583E018B0E6CF800437</key>
 		<string>../..ACEView/Dependencies/ace</string>
 		<key>CFA80E453EAD7275D9BD3697BF2F88317692D696</key>
-		<string>../../ACEView/Dependencies/emmet/</string>
+		<string>../../ACEView/Dependencies/emmet</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:faceleg/ACEView.git</string>
