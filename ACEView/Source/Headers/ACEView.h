@@ -208,28 +208,28 @@ extern NSString *const ACETextDidEndEditingNotification;
 - (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler;
 /** Enable basic autocomplete.
  
- User [editor.setOptions({ enableBasicAutocompletion: BOOL })]
+ Uses [editor.setOptions({ enableBasicAutocompletion: BOOL })]
  
  @param autocomplete YES if basic autocomplete should be enabled, NO otherwise.
  */
 - (void) setBasicAutoCompletion:(BOOL)autocompletion;
 /** Enable live autocompletion.
  
- User [editor.setOptions({ enableLiveAutocompletion: BOOL })]
+ Uses [editor.setOptions({ enableLiveAutocompletion: BOOL })]
  
  @param liveAutocompletion YES if live autocompletion should be enabled, NO otherwise.
  */
 - (void) setLiveAutocompletion:(BOOL)liveAutocompletion;
 /** Enable snippets.
  
- User [editor.setOptions({ enableSnippets: BOOL })]
+ Uses [editor.setOptions({ enableSnippets: BOOL })]
  
  @param snippets YES if snippets should be enabled, NO otherwise.
  */
 - (void) setSnippets:(BOOL)snippets;
 /** Enable emmet.
  
- User [editor.setOptions({ emmet: BOOL })]
+ Uses [editor.setOptions({ emmet: BOOL })]
  
  @param emmet YES if emmet should be enabled, NO otherwise.
  */
@@ -264,4 +264,27 @@ extern NSString *const ACETextDidEndEditingNotification;
  */
 - (void) gotoLine:(NSInteger)lineNumber column:(NSInteger)columnNumber animated:(BOOL)animate;
 
+/** Sets the font family.
+ 
+ Uses [editor.setOptions({ fontFamily: NSString })]
+ 
+ @param fontFamily The new font family.
+ */
+- (void) setFontFamily:(NSString *)fontFamily;
+
+/** Enable line numbers.
+ 
+ Uses [editor.setOption('showLineNumbers', BOOL )]
+ 
+ @param show YES if line numbers should be enabled, NO otherwise.
+ */
+- (void) setShowLineNumbers:(BOOL)show;
+
+/** Enable gutter.
+ 
+ Uses [editor.setOption('showGutter', BOOL )]
+ 
+ @param show YES if gutter should be enabled, NO otherwise.
+ */
+- (void) setShowGutter:(BOOL)show;
 @end

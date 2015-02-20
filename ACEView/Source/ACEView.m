@@ -294,7 +294,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableLiveAutocompletion', %@);", ACEStringFromBool(liveAutocompletion)]];
 }
 - (void) setEmmet:(BOOL)emmet {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableEmmet, %@);", ACEStringFromBool(emmet)]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableEmmet', %@);", ACEStringFromBool(emmet)]];
 }
 - (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setKeyboardHandler(%@);", [ACEKeyboardHandlerNames commandForKeyboardHandler:keyboardHandler]]];
@@ -313,4 +313,15 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.gotoLine(%ld, %ld, %@);", lineNumber, columnNumber, ACEStringFromBool(animate)]];
 }
 
+- (void) setFontFamily:(NSString *)fontFamily {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions({ fontFamily: '%@'});", fontFamily]];
+}
+
+- (void) setShowLineNumbers:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showLineNumbers', %@);", ACEStringFromBool(show)]];
+}
+
+- (void) setShowGutter:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showGutter', %@);", ACEStringFromBool(show)]];
+}
 @end
