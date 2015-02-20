@@ -313,4 +313,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.gotoLine(%ld, %ld, %@);", lineNumber, columnNumber, ACEStringFromBool(animate)]];
 }
 
+- (void) setFontFamily:(NSString *)fontFamily {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions({ fontFamily: '%@'});", fontFamily]];
+}
+
 @end

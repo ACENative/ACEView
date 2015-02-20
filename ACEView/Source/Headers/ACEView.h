@@ -264,4 +264,11 @@ extern NSString *const ACETextDidEndEditingNotification;
  */
 - (void) gotoLine:(NSInteger)lineNumber column:(NSInteger)columnNumber animated:(BOOL)animate;
 
+/** Sets the font family.
+ 
+ User [editor.setOptions({ fontFamily: NSString })]
+ 
+ @param fontFamily The new font family.
+ */
+- (void) setFontFamily:(NSString *)fontFamily;
 @end
