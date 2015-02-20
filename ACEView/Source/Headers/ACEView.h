@@ -271,4 +271,12 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param fontFamily The new font family.
  */
 - (void) setFontFamily:(NSString *)fontFamily;
+
+/** Enable line numbers.
+ 
+ Uses [editor.setOption('showLineNumbers', BOOL )]
+ 
+ @param show YES if line numbers should be enabled, NO otherwise.
+ */
+- (void) setShowLineNumbers:(BOOL)show;
 @end

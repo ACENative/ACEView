@@ -317,4 +317,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOptions({ fontFamily: '%@'});", fontFamily]];
 }
 
+- (void) setShowLineNumbers:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showLineNumbers', %@);", ACEStringFromBool(show)]];
+}
 @end
