@@ -294,7 +294,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableLiveAutocompletion', %@);", ACEStringFromBool(liveAutocompletion)]];
 }
 - (void) setEmmet:(BOOL)emmet {
-    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableEmmet, %@);", ACEStringFromBool(emmet)]];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('enableEmmet', %@);", ACEStringFromBool(emmet)]];
 }
 - (void) setKeyboardHandler:(ACEKeyboardHandler)keyboardHandler {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setKeyboardHandler(%@);", [ACEKeyboardHandlerNames commandForKeyboardHandler:keyboardHandler]]];
