@@ -320,4 +320,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setShowLineNumbers:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showLineNumbers', %@);", ACEStringFromBool(show)]];
 }
+
+- (void) setShowGutter:(BOOL)show {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showGutter', %@);", ACEStringFromBool(show)]];
+}
 @end

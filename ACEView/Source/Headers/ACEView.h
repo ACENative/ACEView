@@ -279,4 +279,12 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param show YES if line numbers should be enabled, NO otherwise.
  */
 - (void) setShowLineNumbers:(BOOL)show;
+
+/** Enable gutter.
+ 
+ Uses [editor.setOption('showGutter', BOOL )]
+ 
+ @param show YES if gutter should be enabled, NO otherwise.
+ */
+- (void) setShowGutter:(BOOL)show;
 @end
