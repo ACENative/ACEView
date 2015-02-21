@@ -339,4 +339,19 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param options A dictionary of search options
  */
 - (void) replaceAll:(NSString*) replacement options:(NSDictionary*)options;
+
+/** Returns the current new line mode.
+ 
+ Uses [EditSession.getNewLineMode()](http://ace.c9.io/api/edit_session.html#EditSession.getNewLineMode).
+
+ */
+- (NSString*) getNewLineMode;
+
+/** Sets the new line mode.
+ 
+ Uses [EditSession.setNewLineMode(String newLineMode)](http://ace.c9.io/api/edit_session.html#EditSession.setNewLineMode).
+ 
+ @param mode The newline mode to use
+ */
+- (void) setNewLineMode:(NSString*)mode;
 @end

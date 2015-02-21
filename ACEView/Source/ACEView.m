@@ -309,6 +309,12 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self setUseSoftWrap:YES];
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setWrapLimitRange(%ld, %ld);", range.location, range.length]];
 }
+- (void) setNewLineMode:(NSString*)mode {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setNewLineMode(\"%@\");", mode]];
+}
+- (NSString*) getNewLineMode {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getNewLineMode();"];
+}
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
 }
