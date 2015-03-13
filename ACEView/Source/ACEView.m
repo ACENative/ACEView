@@ -55,7 +55,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 - (void) initWebView
 {
-    webView = [[WebView alloc] init];
+    webView = [[ACEWebView alloc] init];
     [webView setFrameLoadDelegate:self];
 }
 
