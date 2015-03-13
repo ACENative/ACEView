@@ -347,6 +347,8 @@
 		7C9B6723166B00D300A24CB7 /* worker-xquery.js in Copy ACE JavaScript */ = {isa = PBXBuildFile; fileRef = 7C9B65AC166AF17B00A24CB7 /* worker-xquery.js */; };
 		7C9B6729166B0FED00A24CB7 /* ACEModes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9B6728166B0FED00A24CB7 /* ACEModes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C9B672B166B117200A24CB7 /* ACEModeNames.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9B672A166B117100A24CB7 /* ACEModeNames.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1918F841AB354B400EDB5B0 /* ACEWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = E1918F821AB354B400EDB5B0 /* ACEWebView.h */; };
+		E1918F851AB354B400EDB5B0 /* ACEWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1918F831AB354B400EDB5B0 /* ACEWebView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2873,6 +2875,8 @@
 		7C9B6728166B0FED00A24CB7 /* ACEModes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEModes.h; path = Source/Utilities/Headers/ACEModes.h; sourceTree = "<group>"; };
 		7C9B672A166B117100A24CB7 /* ACEModeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEModeNames.h; path = Source/Utilities/Headers/ACEModeNames.h; sourceTree = "<group>"; };
 		7CAF0CFF15EBAA7C00161329 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1918F821AB354B400EDB5B0 /* ACEWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACEWebView.h; path = Source/Utilities/ACEWebView.h; sourceTree = "<group>"; };
+		E1918F831AB354B400EDB5B0 /* ACEWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACEWebView.m; path = Source/Utilities/ACEWebView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5388,6 +5392,7 @@
 				7C86C823166B47AF00AE3A57 /* ACEModeNames.m */,
 				7C86C82A166B507A00AE3A57 /* ACEThemeNames.m */,
 				400DB09719D60B90003FFD07 /* ACEKeyboardHandlerNames.m */,
+				E1918F831AB354B400EDB5B0 /* ACEWebView.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -5412,6 +5417,7 @@
 				7C08C0811672FD1B000D4A97 /* ACEStringFromBool.h */,
 				400DB09519D60A38003FFD07 /* ACEKeyboardHandlers.h */,
 				400DB09619D60ADC003FFD07 /* ACEKeyboardHandlerNames.h */,
+				E1918F821AB354B400EDB5B0 /* ACEWebView.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -5484,6 +5490,7 @@
 			files = (
 				7C9B66C2166AF4C600A24CB7 /* ACEView.h in Headers */,
 				7C9B6729166B0FED00A24CB7 /* ACEModes.h in Headers */,
+				E1918F841AB354B400EDB5B0 /* ACEWebView.h in Headers */,
 				7C9B672B166B117200A24CB7 /* ACEModeNames.h in Headers */,
 				7C86C827166B4FD000AE3A57 /* ACEThemes.h in Headers */,
 				7C86C829166B506D00AE3A57 /* ACEThemeNames.h in Headers */,
@@ -5638,6 +5645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C9B66BE166AF49F00A24CB7 /* ACEView.m in Sources */,
+				E1918F851AB354B400EDB5B0 /* ACEWebView.m in Sources */,
 				7C9B66C7166AF4F600A24CB7 /* ACELogger.m in Sources */,
 				7C86C825166B47AF00AE3A57 /* ACEModeNames.m in Sources */,
 				7C86C82B166B507A00AE3A57 /* ACEThemeNames.m in Sources */,
