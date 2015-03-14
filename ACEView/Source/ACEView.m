@@ -15,6 +15,7 @@
 
 #import <ACEView/NSString+EscapeForJavaScript.h>
 #import <ACEView/NSInvocation+MainThread.h>
+#import "ACEWebView.h"
 
 #define ACE_JAVASCRIPT_DIRECTORY @"___ACE_VIEW_JAVASCRIPT_DIRECTORY___"
 
