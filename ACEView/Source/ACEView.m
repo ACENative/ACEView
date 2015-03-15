@@ -24,7 +24,9 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
 #pragma mark - ACEView private
 static NSArray *allowedSelectorNamesForJavaScript;
 
-@interface ACEView()
+@interface ACEView() {
+    WebView *   printingView;
+}
 
 - (void) initWebView;
 
@@ -57,6 +59,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
 {
     webView = [[ACEWebView alloc] init];
     [webView setFrameLoadDelegate:self];
+    printingView = [[WebView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 300.0, 1.0)];
+    [printingView.mainFrame.frameView setAllowsScrolling:NO];
 }
 
 - (id) initWithFrame:(NSRect)frame {
@@ -203,7 +207,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
         allowedSelectorNamesForJavaScript = @[
             @"showFindInterface",
             @"showReplaceInterface",
-            @"aceTextDidChange"
+            @"aceTextDidChange",
+            @"printHTML:"
         ];
     }
     return [allowedSelectorNamesForJavaScript retain];
@@ -324,4 +329,74 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setShowGutter:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showGutter', %@);", ACEStringFromBool(show)]];
 }
+
+#pragma mark - Printing
+
+- (void) print:(id)sender
+{
+    int printFontSize = 10;
+    if ([delegate respondsToSelector:@selector(printFontSize)])
+        printFontSize = [delegate printFontSize];
+
+    NSString * staticRender = [NSString stringWithFormat:
+        @"ace.require(\"ace/config\").loadModule(\"ace/ext/static_highlight\", function(static) {"
+            "var session = editor.getSession();"
+            "var printable = static.renderSync(session.getValue(), session.getMode(), editor.renderer.theme);"
+            "var css = \"<style>span {font-size: %dpx;}\" + printable.css + \"</style>\";"
+            "var doc = css + printable.html;"
+            "ACEView.printHTML_(doc);"
+        "});", printFontSize];
+    [self executeScriptWhenLoaded: staticRender];
+}
+
+- (void) printHTML:(NSString *)html
+{
+    //
+    // Obtain print info and customize it
+    //
+    NSPrintInfo * printInfo = nil;
+    if ([delegate respondsToSelector:@selector(printInfo)])
+        printInfo = [delegate printInfo];
+    if (!printInfo)
+        printInfo = [NSPrintInfo sharedPrintInfo];
+    printInfo = [printInfo copy];
+    printInfo.verticallyCentered = NO;
+
+    //
+    // Compute width
+    //
+    const float kExtraMargin = 30.0f;
+    NSRect frame = printingView.frame;
+    frame.size.height = 1;
+    frame.size.width  = printInfo.paperSize.width-printInfo.leftMargin-printInfo.rightMargin-kExtraMargin;
+    printingView.frame = frame;
+
+    //
+    // Non-breaking spaces prevent line wrapping, so we replace them with regular spaces and set the
+    // pre-wrap property instead.
+    //
+    html = [html stringByReplacingOccurrencesOfString:@"\u00A0" withString:@" "];
+    html = [NSString stringWithFormat:@"<div style=\"width: %.1fpx;white-space:pre-wrap;\">%@</div>",
+            frame.size.width, html];
+    [printingView.mainFrame loadHTMLString:html baseURL:nil];
+
+    void (^__block print)(void) = ^{
+        if (printingView.isLoading) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), print);
+        } else {
+            //
+            // Get the height for the rendered frame
+            //
+            NSRect webFrameRect = [[[printingView.mainFrame frameView] documentView] frame];
+            NSRect frame        = printingView.frame;
+            frame.size.height   = webFrameRect.size.height;
+            printingView.frame  = frame;
+
+            NSPrintOperation * op = [NSPrintOperation printOperationWithView:printingView printInfo:printInfo];
+            [op runOperation];
+        }
+    };
+    print();
+}
+
 @end
