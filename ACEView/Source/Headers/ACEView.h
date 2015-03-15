@@ -11,7 +11,6 @@
 #import <ACEView/ACEModes.h>
 #import <ACEView/ACEThemes.h>
 #import <ACEView/ACEKeyboardHandlers.h>
-#import "ACEWebView.h"
 
 extern NSString *const ACETextDidEndEditingNotification;
 
@@ -39,7 +38,7 @@ extern NSString *const ACETextDidEndEditingNotification;
 @interface ACEView : NSScrollView <NSTextFinderClient> {
     NSTextFinder *textFinder;
     CGColorRef _borderColor;
-	ACEWebView *webView;
+	WebView *webView;
 
     id delegate;
 
