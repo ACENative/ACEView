@@ -62,3 +62,22 @@ Now, you could do something like this:
 
 @end
 ```
+
+# Contributions
+
+All are welcome, all are read.
+
+Here is a list of the honorable humans who have submitted fixes, features and time to this great cause:
+
+ - Michael Robinson
+ - Matthias Neeracher
+ - Mikael Hallendal
+ - Ashok Gelal
+ - Tim Preuß
+ - Vincent Wayne
+ - Vladimir Prudnikov
+ - AquarHEAD L
+ - Basuke Suzuki
+ - Conor Taylor
+ - Fabian Jäger
+ - Harikrishnan Gopalakrishnan
