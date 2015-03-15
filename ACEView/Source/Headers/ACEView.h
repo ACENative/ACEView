@@ -30,6 +30,14 @@ extern NSString *const ACETextDidEndEditingNotification;
 /** Provides the desired font size for printing. Defaults to 10px */
 @optional - (int)printFontSize;
 
+/** Provides the desired height for page headers and footers. Defaults to 0.0px */
+@optional - (float)printHeaderHeight;
+@optional - (float)printFooterHeight;
+
+/** Draws the headers and footers. Defaults to no headers and footers */
+@optional - (void)drawPrintHeaderForPage:(int)pageNo inRect:(NSRect)rect;
+@optional - (void)drawPrintFooterForPage:(int)pageNo inRect:(NSRect)rect;
+
 @end
 
 /** This class provides the main public interface for the ACEView. */

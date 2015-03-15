@@ -26,7 +26,8 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
 static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView() {
-    WebView *   printingView;
+    WebView *           printingView;
+    NSPrintOperation *  printOperation;
 }
 
 - (void) initWebView;
@@ -60,8 +61,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
 {
     webView = [[ACEWebView alloc] init];
     [webView setFrameLoadDelegate:self];
+
     printingView = [[WebView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 300.0, 1.0)];
     [printingView.mainFrame.frameView setAllowsScrolling:NO];
+    [printingView setUIDelegate:self];
 }
 
 - (id) initWithFrame:(NSRect)frame {
@@ -130,6 +133,34 @@ static NSArray *allowedSelectorNamesForJavaScript;
 #pragma mark - WebView delegate methods
 - (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
     [[webView windowScriptObject] setValue:self forKey:@"ACEView"];
+}
+
+- (float) webViewHeaderHeight:(WebView *)sender
+{
+    if ([delegate respondsToSelector:@selector(printHeaderHeight)])
+        return [delegate printHeaderHeight];
+    else
+        return 0.0f;
+}
+
+- (float) webViewFooterHeight:(WebView *)sender
+{
+    if ([delegate respondsToSelector:@selector(printFooterHeight)])
+        return [delegate printFooterHeight];
+    else
+        return 0.0f;
+}
+
+- (void) webView:(WebView *)sender drawHeaderInRect:(NSRect)rect
+{
+    if ([delegate respondsToSelector:@selector(drawPrintHeaderForPage:inRect:)])
+        [delegate drawPrintHeaderForPage:(int)[printOperation currentPage] inRect:rect];
+}
+
+- (void) webView:(WebView *)sender drawFooterInRect:(NSRect)rect
+{
+    if ([delegate respondsToSelector:@selector(drawPrintFooterForPage:inRect:)])
+        [delegate drawPrintFooterForPage:(int)[printOperation currentPage] inRect:rect];
 }
 
 #pragma mark - NSTextFinderClient methods
@@ -393,8 +424,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
             frame.size.height   = webFrameRect.size.height;
             printingView.frame  = frame;
 
-            NSPrintOperation * op = [NSPrintOperation printOperationWithView:printingView printInfo:printInfo];
-            [op runOperation];
+            NSView * viewToPrint = [[[printingView mainFrame] frameView] documentView];
+            printOperation = [NSPrintOperation printOperationWithView:viewToPrint printInfo:printInfo];
+            [printOperation runOperation];
+            printOperation = nil;
         }
     };
     print();

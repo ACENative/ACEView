@@ -57,9 +57,56 @@
     [aceView setKeyboardHandler:[keyboardHandler indexOfSelectedItem]];
 }
 
+#pragma mark - Delegate methods
+
 - (void) textDidChange:(NSNotification *)notification {
     // Handle text changes
     NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
+- (float) printHeaderHeight
+{
+    return 20.0f;
+}
+
+- (float) printFooterHeight
+{
+    return 12.0f;
+}
+
+//
+// I'm not saying that this flashy look goes best with the content
+// of the page, this is just to demonstrate the possibilities.
+//
+- (void) drawPrintHeaderForPage:(int)pageNo inRect:(NSRect)rect
+{
+    NSGradient * gradient =
+        [[NSGradient alloc] initWithStartingColor:[NSColor colorWithWhite:0.3 alpha:1.0]
+                                      endingColor:[NSColor colorWithWhite:0.95 alpha:1.0]];
+    [gradient drawInRect:rect angle:0.0];
+    NSString *      pageString  = [NSString stringWithFormat:@"%d", pageNo];
+    NSFont *        pageFont    = [NSFont userFixedPitchFontOfSize: 15.0];
+    NSDictionary *  attr        = @{NSFontAttributeName: pageFont};
+
+    NSSize size     = [pageString sizeWithAttributes:attr];
+    size.width     += 10.0;
+    rect.origin.x  += rect.size.width-size.width;
+    rect.size.width = size.width;
+    rect.origin.y  += 0.5*(rect.size.height-pageFont.ascender);
+    [pageString drawInRect:rect withAttributes:attr];
+}
+
+- (void) drawPrintFooterForPage:(int)pageNo inRect:(NSRect)rect
+{
+    NSString *      colophon    = @"Printed by ACE View Example";
+    NSFont *        coloFont    = [NSFont userFontOfSize:9.0];
+    NSDictionary *  attr        = @{NSFontAttributeName: coloFont};
+
+    NSSize  size    = [colophon sizeWithAttributes:attr];
+    NSPoint at      = {
+        rect.origin.x+0.5*(rect.size.width-size.width),
+        rect.origin.y-coloFont.descender};
+    [colophon drawAtPoint:at withAttributes:attr];
 }
 
 @end
