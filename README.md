@@ -60,6 +60,3 @@ Now, you could do something like this:
 
 @end
 ```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/faceleg/ACEView/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
