@@ -25,6 +25,12 @@ extern NSString *const ACETextDidEndEditingNotification;
  */
 - (void) textDidChange:(NSNotification *)notification;
 
+/** Provides the print settings to be used for a print job. Defaults to application shared settings. */
+@optional - (NSPrintInfo *)printInfo;
+
+/** Provides the desired font size for printing. Defaults to 10px */
+@optional - (int)printFontSize;
+
 @end
 
 /** This class provides the main public interface for the ACEView. */
