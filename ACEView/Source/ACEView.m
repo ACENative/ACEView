@@ -374,7 +374,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
         @"ace.require(\"ace/config\").loadModule(\"ace/ext/static_highlight\", function(static) {"
             "var session = editor.getSession();"
             "var printable = static.renderSync(session.getValue(), session.getMode(), editor.renderer.theme);"
-            "var css = \"<style>span {font-size: %dpx;}\" + printable.css + \"</style>\";"
+            "var css = \"<style>body {white-space:pre-wrap;} span {font-size: %dpx;}\" + printable.css + \"</style>\";"
             "var doc = css + printable.html;"
             "ACEView.printHTML_(doc);"
         "});", printFontSize];
@@ -397,10 +397,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
     //
     // Compute width
     //
-    const float kExtraMargin = 30.0f;
     NSRect frame = printingView.frame;
     frame.size.height = 1;
-    frame.size.width  = printInfo.paperSize.width-printInfo.leftMargin-printInfo.rightMargin-kExtraMargin;
+    frame.size.width  = printInfo.paperSize.width-printInfo.leftMargin-printInfo.rightMargin;
     printingView.frame = frame;
 
     //
@@ -408,8 +407,6 @@ static NSArray *allowedSelectorNamesForJavaScript;
     // pre-wrap property instead.
     //
     html = [html stringByReplacingOccurrencesOfString:@"\u00A0" withString:@" "];
-    html = [NSString stringWithFormat:@"<div style=\"width: %.1fpx;white-space:pre-wrap;\">%@</div>",
-            frame.size.width, html];
     [printingView.mainFrame loadHTMLString:html baseURL:nil];
 
     void (^__block print)(void) = ^{
