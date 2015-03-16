@@ -22,7 +22,7 @@ extern NSString *const ACETextDidEndEditingNotification;
 
  @param notification The ACETextDidEndEditingNotification notification that is posted to the default notification center.
  */
-- (void) textDidChange:(NSNotification *)notification;
+@optional - (void) textDidChange:(NSNotification *)notification;
 
 /** Provides a title for the print job. Defaults to the view's printJobTitle */
 @optional - (NSString *)printJobTitle;
