@@ -387,8 +387,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
     // Obtain print info and customize it
     //
     NSPrintInfo * printInfo = nil;
-    if ([delegate respondsToSelector:@selector(printInfo)])
-        printInfo = [delegate printInfo];
+    if ([delegate respondsToSelector:@selector(printSettings)])
+        printInfo = [delegate printSettings];
     if (!printInfo)
         printInfo = [NSPrintInfo sharedPrintInfo];
     printInfo = [printInfo copy];
@@ -437,6 +437,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void)finishedPrinting:(void *)context
 {
     printOperation = nil;
+    if ([delegate respondsToSelector:@selector(printingComplete)])
+        [delegate printingComplete];
 }
 
 @end

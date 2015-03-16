@@ -27,8 +27,8 @@ extern NSString *const ACETextDidEndEditingNotification;
 /** Provides a title for the print job. Defaults to the view's printJobTitle */
 @optional - (NSString *)printJobTitle;
 
-/** Provides the print settings to be used for a print job. Defaults to application shared settings. */
-@optional - (NSPrintInfo *)printInfo;
+/** Provides the print settings to be used for a print job. Defaults to application shared settings.*/
+@optional - (NSPrintInfo *)printSettings;
 
 /** Provides the desired font size for printing. Defaults to 10px */
 @optional - (int)printFontSize;
@@ -40,6 +40,9 @@ extern NSString *const ACETextDidEndEditingNotification;
 /** Draws the headers and footers. Defaults to no headers and footers */
 @optional - (void)drawPrintHeaderForPage:(int)pageNo inRect:(NSRect)rect;
 @optional - (void)drawPrintFooterForPage:(int)pageNo inRect:(NSRect)rect;
+
+/** Ends a print job */
+@optional - (void)printingComplete;
 
 @end
 
