@@ -24,6 +24,9 @@ extern NSString *const ACETextDidEndEditingNotification;
  */
 - (void) textDidChange:(NSNotification *)notification;
 
+/** Provides a title for the print job. Defaults to the view's printJobTitle */
+@optional - (NSString *)printJobTitle;
+
 /** Provides the print settings to be used for a print job. Defaults to application shared settings. */
 @optional - (NSPrintInfo *)printInfo;
 

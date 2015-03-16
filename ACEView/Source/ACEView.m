@@ -423,6 +423,11 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
             NSView * viewToPrint = [[[printingView mainFrame] frameView] documentView];
             printOperation = [NSPrintOperation printOperationWithView:viewToPrint printInfo:printInfo];
+            if ([delegate respondsToSelector:@selector(printJobTitle)])
+                printOperation.jobTitle = [delegate printJobTitle];
+            else
+                printOperation.jobTitle = [self printJobTitle];
+
             [printOperation runOperation];
             printOperation = nil;
         }

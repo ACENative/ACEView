@@ -64,6 +64,11 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
+- (NSString *)printJobTitle
+{
+    return @"ACE View Print";
+}
+
 - (float) printHeaderHeight
 {
     return 20.0f;
