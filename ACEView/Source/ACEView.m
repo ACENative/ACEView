@@ -374,8 +374,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
         @"ace.require(\"ace/config\").loadModule(\"ace/ext/static_highlight\", function(static) {"
             "var session = editor.getSession();"
             "var printable = static.renderSync(session.getValue(), session.getMode(), editor.renderer.theme);"
-            "var css = \"<style>body {white-space:pre-wrap;} span {font-size: %dpx;}\" + printable.css + \"</style>\";"
-            "var doc = css + printable.html;"
+            "var css = \"<style>body {white-space:pre-wrap;}\" + printable.css + \"</style>\";"
+            "var doc = css.replace(/(font-size:)\\s*\\d+(px)/g, '$1 %d$2') + printable.html;"
             "ACEView.printHTML_(doc);"
         "});", printFontSize];
     [self executeScriptWhenLoaded: staticRender];
