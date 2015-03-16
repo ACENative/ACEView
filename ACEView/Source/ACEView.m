@@ -26,7 +26,8 @@ NSString *const ACETextDidEndEditingNotification = @"ACETextDidEndEditingNotific
 static NSArray *allowedSelectorNamesForJavaScript;
 
 @interface ACEView() {
-    WebView *   printingView;
+    WebView *           printingView;
+    NSPrintOperation *  printOperation;
 }
 
 - (void) initWebView;
@@ -60,8 +61,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
 {
     webView = [[ACEWebView alloc] init];
     [webView setFrameLoadDelegate:self];
+
     printingView = [[WebView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 300.0, 1.0)];
     [printingView.mainFrame.frameView setAllowsScrolling:NO];
+    [printingView setUIDelegate:self];
 }
 
 - (id) initWithFrame:(NSRect)frame {
@@ -130,6 +133,34 @@ static NSArray *allowedSelectorNamesForJavaScript;
 #pragma mark - WebView delegate methods
 - (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
     [[webView windowScriptObject] setValue:self forKey:@"ACEView"];
+}
+
+- (float) webViewHeaderHeight:(WebView *)sender
+{
+    if ([delegate respondsToSelector:@selector(printHeaderHeight)])
+        return [delegate printHeaderHeight];
+    else
+        return 0.0f;
+}
+
+- (float) webViewFooterHeight:(WebView *)sender
+{
+    if ([delegate respondsToSelector:@selector(printFooterHeight)])
+        return [delegate printFooterHeight];
+    else
+        return 0.0f;
+}
+
+- (void) webView:(WebView *)sender drawHeaderInRect:(NSRect)rect
+{
+    if ([delegate respondsToSelector:@selector(drawPrintHeaderForPage:inRect:)])
+        [delegate drawPrintHeaderForPage:(int)[printOperation currentPage] inRect:rect];
+}
+
+- (void) webView:(WebView *)sender drawFooterInRect:(NSRect)rect
+{
+    if ([delegate respondsToSelector:@selector(drawPrintFooterForPage:inRect:)])
+        [delegate drawPrintFooterForPage:(int)[printOperation currentPage] inRect:rect];
 }
 
 #pragma mark - NSTextFinderClient methods
@@ -343,8 +374,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
         @"ace.require(\"ace/config\").loadModule(\"ace/ext/static_highlight\", function(static) {"
             "var session = editor.getSession();"
             "var printable = static.renderSync(session.getValue(), session.getMode(), editor.renderer.theme);"
-            "var css = \"<style>span {font-size: %dpx;}\" + printable.css + \"</style>\";"
-            "var doc = css + printable.html;"
+            "var css = \"<style>body {white-space:pre-wrap;}\" + printable.css + \"</style>\";"
+            "var doc = css.replace(/(font-size:)\\s*\\d+(px)/g, '$1 %d$2') + printable.html;"
             "ACEView.printHTML_(doc);"
         "});", printFontSize];
     [self executeScriptWhenLoaded: staticRender];
@@ -356,8 +387,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
     // Obtain print info and customize it
     //
     NSPrintInfo * printInfo = nil;
-    if ([delegate respondsToSelector:@selector(printInfo)])
-        printInfo = [delegate printInfo];
+    if ([delegate respondsToSelector:@selector(printInformation)])
+        printInfo = [delegate printInformation];
     if (!printInfo)
         printInfo = [NSPrintInfo sharedPrintInfo];
     printInfo = [printInfo copy];
@@ -366,10 +397,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
     //
     // Compute width
     //
-    const float kExtraMargin = 30.0f;
     NSRect frame = printingView.frame;
     frame.size.height = 1;
-    frame.size.width  = printInfo.paperSize.width-printInfo.leftMargin-printInfo.rightMargin-kExtraMargin;
+    frame.size.width  = printInfo.paperSize.width-printInfo.leftMargin-printInfo.rightMargin;
     printingView.frame = frame;
 
     //
@@ -377,8 +407,6 @@ static NSArray *allowedSelectorNamesForJavaScript;
     // pre-wrap property instead.
     //
     html = [html stringByReplacingOccurrencesOfString:@"\u00A0" withString:@" "];
-    html = [NSString stringWithFormat:@"<div style=\"width: %.1fpx;white-space:pre-wrap;\">%@</div>",
-            frame.size.width, html];
     [printingView.mainFrame loadHTMLString:html baseURL:nil];
 
     void (^__block print)(void) = ^{
@@ -393,11 +421,23 @@ static NSArray *allowedSelectorNamesForJavaScript;
             frame.size.height   = webFrameRect.size.height;
             printingView.frame  = frame;
 
-            NSPrintOperation * op = [NSPrintOperation printOperationWithView:printingView printInfo:printInfo];
-            [op runOperation];
+            NSView * viewToPrint = [[[printingView mainFrame] frameView] documentView];
+            printOperation = [NSPrintOperation printOperationWithView:viewToPrint printInfo:printInfo];
+            printOperation.jobTitle = [self printJobTitle];
+
+            if ([delegate respondsToSelector:@selector(startPrintOperation:)])
+                [delegate startPrintOperation:printOperation];
+            [printOperation runOperationModalForWindow:[self window] delegate:self didRunSelector:@selector(finishedPrinting:) contextInfo:NULL];
         }
     };
     print();
+}
+
+- (void)finishedPrinting:(void *)context
+{
+    printOperation = nil;
+    if ([delegate respondsToSelector:@selector(endPrintOperation)])
+        [delegate endPrintOperation];
 }
 
 @end

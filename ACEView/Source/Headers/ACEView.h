@@ -22,13 +22,25 @@ extern NSString *const ACETextDidEndEditingNotification;
 
  @param notification The ACETextDidEndEditingNotification notification that is posted to the default notification center.
  */
-- (void) textDidChange:(NSNotification *)notification;
+@optional - (void) textDidChange:(NSNotification *)notification;
 
-/** Provides the print settings to be used for a print job. Defaults to application shared settings. */
-@optional - (NSPrintInfo *)printInfo;
+/** Provides the print settings to be used for a print job. Defaults to application shared settings.*/
+@optional - (NSPrintInfo *)printInformation;
 
 /** Provides the desired font size for printing. Defaults to 10px */
 @optional - (int)printFontSize;
+
+/** Provides the desired height for page headers and footers. Defaults to 0.0px */
+@optional - (float)printHeaderHeight;
+@optional - (float)printFooterHeight;
+
+/** Draws the headers and footers. Defaults to no headers and footers */
+@optional - (void)drawPrintHeaderForPage:(int)pageNo inRect:(NSRect)rect;
+@optional - (void)drawPrintFooterForPage:(int)pageNo inRect:(NSRect)rect;
+
+/** Called before starting and ending a print job */
+@optional - (void)startPrintOperation:(NSPrintOperation *)printOp;
+@optional - (void)endPrintOperation;
 
 @end
 
