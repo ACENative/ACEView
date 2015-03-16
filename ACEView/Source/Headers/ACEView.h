@@ -24,11 +24,8 @@ extern NSString *const ACETextDidEndEditingNotification;
  */
 @optional - (void) textDidChange:(NSNotification *)notification;
 
-/** Provides a title for the print job. Defaults to the view's printJobTitle */
-@optional - (NSString *)printJobTitle;
-
 /** Provides the print settings to be used for a print job. Defaults to application shared settings.*/
-@optional - (NSPrintInfo *)printSettings;
+@optional - (NSPrintInfo *)printInformation;
 
 /** Provides the desired font size for printing. Defaults to 10px */
 @optional - (int)printFontSize;
@@ -41,8 +38,9 @@ extern NSString *const ACETextDidEndEditingNotification;
 @optional - (void)drawPrintHeaderForPage:(int)pageNo inRect:(NSRect)rect;
 @optional - (void)drawPrintFooterForPage:(int)pageNo inRect:(NSRect)rect;
 
-/** Ends a print job */
-@optional - (void)printingComplete;
+/** Called before starting and ending a print job */
+@optional - (void)startPrintOperation:(NSPrintOperation *)printOp;
+@optional - (void)endPrintOperation;
 
 @end
 

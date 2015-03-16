@@ -387,8 +387,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
     // Obtain print info and customize it
     //
     NSPrintInfo * printInfo = nil;
-    if ([delegate respondsToSelector:@selector(printSettings)])
-        printInfo = [delegate printSettings];
+    if ([delegate respondsToSelector:@selector(printInformation)])
+        printInfo = [delegate printInformation];
     if (!printInfo)
         printInfo = [NSPrintInfo sharedPrintInfo];
     printInfo = [printInfo copy];
@@ -423,11 +423,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
             NSView * viewToPrint = [[[printingView mainFrame] frameView] documentView];
             printOperation = [NSPrintOperation printOperationWithView:viewToPrint printInfo:printInfo];
-            if ([delegate respondsToSelector:@selector(printJobTitle)])
-                printOperation.jobTitle = [delegate printJobTitle];
-            else
-                printOperation.jobTitle = [self printJobTitle];
- 
+            printOperation.jobTitle = [self printJobTitle];
+
+            if ([delegate respondsToSelector:@selector(startPrintOperation:)])
+                [delegate startPrintOperation:printOperation];
             [printOperation runOperationModalForWindow:[self window] delegate:self didRunSelector:@selector(finishedPrinting:) contextInfo:NULL];
         }
     };
@@ -437,8 +436,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void)finishedPrinting:(void *)context
 {
     printOperation = nil;
-    if ([delegate respondsToSelector:@selector(printingComplete)])
-        [delegate printingComplete];
+    if ([delegate respondsToSelector:@selector(endPrintOperation)])
+        [delegate endPrintOperation];
 }
 
 @end
