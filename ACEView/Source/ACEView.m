@@ -427,12 +427,16 @@ static NSArray *allowedSelectorNamesForJavaScript;
                 printOperation.jobTitle = [delegate printJobTitle];
             else
                 printOperation.jobTitle = [self printJobTitle];
-
-            [printOperation runOperation];
-            printOperation = nil;
+ 
+            [printOperation runOperationModalForWindow:[self window] delegate:self didRunSelector:@selector(finishedPrinting:) contextInfo:NULL];
         }
     };
     print();
+}
+
+- (void)finishedPrinting:(void *)context
+{
+    printOperation = nil;
 }
 
 @end
