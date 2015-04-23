@@ -39,6 +39,7 @@ typedef NS_ENUM(NSUInteger, ACEMode) {
     ACEModePHP,
     ACEModePowershell,
     ACEModePython,
+    ACEModeObjC,
     ACEModeRuby,
     ACEModeSCAD,
     ACEModeScala,
