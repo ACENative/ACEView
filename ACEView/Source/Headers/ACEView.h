@@ -313,4 +313,11 @@ extern NSString *const ACETextDidEndEditingNotification;
  
  */
 - (NSUInteger) getLength;
+
+/** Returns a verbatim copy of the given line as it is in the document.
+ 
+ Uses [editor.getSession(Number row)]
+ 
+ */
+- (NSString*) getLine:(NSInteger)line;
 @end
