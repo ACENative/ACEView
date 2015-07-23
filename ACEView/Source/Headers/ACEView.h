@@ -306,4 +306,18 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param show YES if gutter should be enabled, NO otherwise.
  */
 - (void) setShowGutter:(BOOL)show;
+
+/** Returns the number of rows in the document.
+ 
+ Uses [editor.getSession().getLength()]
+ 
+ */
+- (NSUInteger) getLength;
+
+/** Returns a verbatim copy of the given line as it is in the document.
+ 
+ Uses [editor.getSession(Number row)]
+ 
+ */
+- (NSString*) getLine:(NSInteger)line;
 @end

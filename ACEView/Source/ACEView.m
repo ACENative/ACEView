@@ -368,6 +368,14 @@ static NSArray *allowedSelectorNamesForJavaScript;
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showGutter', %@);", ACEStringFromBool(show)]];
 }
 
+- (NSUInteger) getLength {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getLength();"].integerValue;
+}
+
+- (NSString*) getLine:(NSInteger)line {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:[NSString stringWithFormat:@"editor.getSession().getLine(%ld);", line]];
+}
+
 #pragma mark - Printing
 
 - (void) print:(id)sender
