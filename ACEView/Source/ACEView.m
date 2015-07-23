@@ -369,7 +369,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
 }
 
 - (NSUInteger) getLength {
-    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getLength() + \"\""].integerValue;
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getLength();"].integerValue;
 }
 
 - (NSString*) getLine:(NSInteger)line {
