@@ -320,4 +320,23 @@ extern NSString *const ACETextDidEndEditingNotification;
  
  */
 - (NSString*) getLine:(NSInteger)line;
+
+/** Searches for all occurances options.needle. 
+ 
+ If found, this method returns an array of Ranges where the text first occurs. If options.backwards is true, the search goes backwards in the session.
+ 
+ Uses [Search.findAll(EditSession session)](http://ace.c9.io/api/search.html).
+
+ @param A dictionary of search options.
+ */
+- (NSArray*) findAll:(NSDictionary*) options;
+
+/** Replaces all occurances of options.needle with the value in replacement.
+ 
+ Uses [Editor.replaceAll(String replacement, Object options)](http://ace.c9.io/api/editor.html#Editor.replaceAll).
+ 
+ @param replacement The replacement value
+ @param options A dictionary of search options
+ */
+- (void) replaceAll:(NSString*) replacement options:(NSDictionary*)options;
 @end
