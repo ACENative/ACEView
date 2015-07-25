@@ -80,6 +80,10 @@ extern NSString *const ACETextDidEndEditingNotification;
  *  ---------------------------------------------------------------------------------------
  */
 
+/** Sets the cursor to the editor view.
+ */
+- (void) focus;
+
 /** Retrieve the content of the underlying ACE Editor.
 
  Uses [editor.getValue()](http://ace.ajax.org/#Editor.getValue).

@@ -295,6 +295,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setMode:(ACEMode)mode {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", [ACEModeNames nameForMode:mode]]];
 }
+
+- (void) focus {
+    [self executeScriptWhenLoaded:@"focusEditor();"];
+}
 - (void) setTheme:(ACETheme)theme {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
 }

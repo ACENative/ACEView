@@ -32,6 +32,7 @@
     [aceView setLiveAutocompletion:YES];
     [aceView setSnippets:YES];
     [aceView setEmmet: YES];
+    [aceView focus];
 }
 
 - (void) awakeFromNib {
