@@ -354,4 +354,14 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param mode The newline mode to use
  */
 - (void) setNewLineMode:(NSString*)mode;
+
+/** Pass true to enable the use of soft tabs. 
+ 
+ Soft tabs means you're using spaces instead of the tab character ('\t').
+ 
+ Uses [EditSession.setUseSoftTabs(Boolean useSoftTabs)](http://ace.c9.io/api/edit_session.html#EditSession.setUseSoftTabs).
+ 
+ @param tabs True if soft tabs should be used
+ */
+- (void) setUseSoftTabs:(BOOL)tabs;
 @end

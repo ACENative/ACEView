@@ -315,6 +315,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (NSString*) getNewLineMode {
     return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getNewLineMode();"];
 }
+- (void) setUseSoftTabs:(BOOL)tabs {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setUseSoftTabs(%@);", ACEStringFromBool(tabs)]];
+}
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
 }
