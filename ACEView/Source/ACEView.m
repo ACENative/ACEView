@@ -318,6 +318,9 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setUseSoftTabs:(BOOL)tabs {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setUseSoftTabs(%@);", ACEStringFromBool(tabs)]];
 }
+- (void) setTabSize:(NSInteger)size {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setTabSize(%ld);", (long)size]];
+}
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
 }

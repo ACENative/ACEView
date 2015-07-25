@@ -364,4 +364,14 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param tabs True if soft tabs should be used
  */
 - (void) setUseSoftTabs:(BOOL)tabs;
+
+/** Set the number of spaces that define a soft tab.
+ 
+ For example, passing in 4 transforms the soft tabs to be equivalent to four spaces. This function also emits the changeTabSize event.
+ 
+ Uses [EditSession.setTabSize(Number tabSize)](http://ace.c9.io/api/edit_session.html#EditSession.setTabSize).
+ 
+ @param size The amount of spaces to be used instead of tabs
+ */
+- (void) setTabSize:(NSInteger)size;
 @end
