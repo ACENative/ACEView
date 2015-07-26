@@ -80,6 +80,10 @@ extern NSString *const ACETextDidEndEditingNotification;
  *  ---------------------------------------------------------------------------------------
  */
 
+/** Sets the cursor to the editor view.
+ */
+- (void) focus;
+
 /** Retrieve the content of the underlying ACE Editor.
 
  Uses [editor.getValue()](http://ace.ajax.org/#Editor.getValue).
@@ -339,4 +343,39 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param options A dictionary of search options
  */
 - (void) replaceAll:(NSString*) replacement options:(NSDictionary*)options;
+
+/** Returns the current new line mode.
+ 
+ Uses [EditSession.getNewLineMode()](http://ace.c9.io/api/edit_session.html#EditSession.getNewLineMode).
+
+ */
+- (NSString*) getNewLineMode;
+
+/** Sets the new line mode.
+ 
+ Uses [EditSession.setNewLineMode(String newLineMode)](http://ace.c9.io/api/edit_session.html#EditSession.setNewLineMode).
+ 
+ @param mode The newline mode to use
+ */
+- (void) setNewLineMode:(NSString*)mode;
+
+/** Pass true to enable the use of soft tabs. 
+ 
+ Soft tabs means you're using spaces instead of the tab character ('\t').
+ 
+ Uses [EditSession.setUseSoftTabs(Boolean useSoftTabs)](http://ace.c9.io/api/edit_session.html#EditSession.setUseSoftTabs).
+ 
+ @param tabs True if soft tabs should be used
+ */
+- (void) setUseSoftTabs:(BOOL)tabs;
+
+/** Set the number of spaces that define a soft tab.
+ 
+ For example, passing in 4 transforms the soft tabs to be equivalent to four spaces. This function also emits the changeTabSize event.
+ 
+ Uses [EditSession.setTabSize(Number tabSize)](http://ace.c9.io/api/edit_session.html#EditSession.setTabSize).
+ 
+ @param size The amount of spaces to be used instead of tabs
+ */
+- (void) setTabSize:(NSInteger)size;
 @end

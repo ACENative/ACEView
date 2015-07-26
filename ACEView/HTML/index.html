@@ -30,6 +30,17 @@
             ace.config.set("basePath", "___ACE_VIEW_JAVASCRIPT_DIRECTORY___");
             ace.require("ace/ext/language_tools");
             ace.require("ace/ext/emmet");
+
+            function focusEditor() {
+                var editorContainer = document.getElementById("editor");
+                if (editorContainer) {
+                    var textareas = editorContainer.getElementsByTagName("textarea");
+                    if (textareas.length == 1) {
+                        textareas[0].focus();
+                    }
+                }
+            }
+            
             var editor = ace.edit("editor");
             editor.commands.removeCommand('find');
             editor.commands.removeCommand('replace');

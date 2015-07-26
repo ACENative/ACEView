@@ -295,6 +295,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setMode:(ACEMode)mode {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", [ACEModeNames nameForMode:mode]]];
 }
+
+- (void) focus {
+    [self executeScriptWhenLoaded:@"focusEditor();"];
+}
 - (void) setTheme:(ACETheme)theme {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
 }
@@ -308,6 +312,18 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setWrapLimitRange:(NSRange)range {
     [self setUseSoftWrap:YES];
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setWrapLimitRange(%ld, %ld);", range.location, range.length]];
+}
+- (void) setNewLineMode:(NSString*)mode {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setNewLineMode(\"%@\");", mode]];
+}
+- (NSString*) getNewLineMode {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getNewLineMode();"];
+}
+- (void) setUseSoftTabs:(BOOL)tabs {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setUseSoftTabs(%@);", ACEStringFromBool(tabs)]];
+}
+- (void) setTabSize:(NSInteger)size {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setTabSize(%ld);", (long)size]];
 }
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
