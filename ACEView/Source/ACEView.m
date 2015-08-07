@@ -268,7 +268,7 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 - (NSString*) getSearchOptions:(NSDictionary*)options {
     NSError *error = nil;
-    NSData *json = [NSJSONSerialization dataWithJSONObject:options options:nil error:&error];
+    NSData *json = [NSJSONSerialization dataWithJSONObject:options options:0 error:&error];
     
     if (error || !json) {
         return nil;
