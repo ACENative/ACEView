@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ACEView"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "Use the ACE editor in your Cocoa applications."
   s.description  = <<-DESC
                     The ACEView framework aims to allow you to use the ACE source code editor in your Cocoa applications, as if it were a native control.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   }
   s.platform     = :osx
   s.frameworks   = ['WebKit']
-  s.resource     = ['ACEView/Dependencies/ace/src/*.js', 'ACEView/HTML/index.html']
+  s.resource     = ['ACEView/Dependencies/ace/src-min/*.js', 'ACEView/Dependencies/emmet/emmet.js', 'ACEView/HTML/index.html']
   s.source_files = 'ACEView/Source/**/*.{h,m}'
   s.requires_arc = false
 end
