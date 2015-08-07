@@ -113,3 +113,19 @@ xcuserdata
 # UNKNOWN: recommended by others, but I can't discover what these files are
 #
 # ...none. Everything is now explained.
+
+# ACE ignore files
+ACEView/Dependencies/ace/src
+ACEView/Dependencies/ace/src-noconflict
+ACEView/Dependencies/ace/src-min-noconflict
+ACEView/Dependencies/ace/demo
+ACEView/Dependencies/ace/textarea
+ACEView/Dependencies/ace/ChangeLog.txt
+ACEView/Dependencies/ace/README.md
+ACEView/Dependencies/ace/editor.html
+ACEView/Dependencies/ace/package.json
+ACEView/Dependencies/ace/kitchen-sink.html
+
+# Emmet ignore files
+ACEView/Dependencies/emmet/package.json
+ACEView/Dependencies/emmet/README.md
