@@ -17,12 +17,12 @@
 
  @return Array of ACE keyboard handler names.
  */
-+ (NSArray *) keyboardHandlerCommands;
++ (NSArray<NSString *> *) keyboardHandlerCommands;
 /** Return an array of human-readable ACE keyboard handler names.
 
  @return Array of human-readable ACE keyboard handler names.
  */
-+ (NSArray *) humanKeyboardHandlerNames;
++ (NSArray<NSString *> *) humanKeyboardHandlerNames;
 
 /** Return the ACE keyboard handler command for a given ACEKeyboardHandler constant.
 

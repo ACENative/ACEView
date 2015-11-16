@@ -25,12 +25,12 @@
 
  @return Array of ACE theme names.
  */
-+ (NSArray *) themeNames;
++ (NSArray<NSString *> *) themeNames;
 /** Return an array of human-readable ACE theme names.
 
  @return Array of human-readable ACE theme names.
  */
-+ (NSArray *) humanThemeNames;
++ (NSArray<NSString *> *) humanThemeNames;
 
 /** Return the ACE theme name for a given ACETheme constant.
 

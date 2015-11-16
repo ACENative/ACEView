@@ -25,12 +25,12 @@
 
  @return Array of ACE mode names.
  */
-+ (NSArray *) modeNames;
++ (NSArray<NSString *> *) modeNames;
 /** Return an array of human-readable ACE mode names.
 
  @return Array of human-readable ACE mode names.
  */
-+ (NSArray *) humanModeNames;
++ (NSArray<NSString *> *) humanModeNames;
 
 /** Return the ACE mode name for a given ACEmode constant.
 
