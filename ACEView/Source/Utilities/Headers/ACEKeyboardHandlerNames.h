@@ -1,5 +1,11 @@
 #import "ACEKeyboardHandlers.h"
 
+#if __has_feature(objc_generics)
+#define OF_NSSTRING <NSString *>
+#else
+#define OF_NSSTRING
+#endif
+
 /** Class providing methods to:
 
  - convert ACE keyboard handler names used internally to to their human-readable counterparts and vise-versa.
@@ -17,12 +23,12 @@
 
  @return Array of ACE keyboard handler names.
  */
-+ (NSArray *) keyboardHandlerCommands;
++ (NSArray OF_NSSTRING *) keyboardHandlerCommands;
 /** Return an array of human-readable ACE keyboard handler names.
 
  @return Array of human-readable ACE keyboard handler names.
  */
-+ (NSArray *) humanKeyboardHandlerNames;
++ (NSArray OF_NSSTRING *) humanKeyboardHandlerNames;
 
 /** Return the ACE keyboard handler command for a given ACEKeyboardHandler constant.
 
