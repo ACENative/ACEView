@@ -7,6 +7,12 @@
 //
 #import <ACEView/ACEModes.h>
 
+#if __has_feature(objc_generics)
+#define OF_NSSTRING <NSString *>
+#else
+#define OF_NSSTRING
+#endif
+
 /** Class providing methods to:
 
  - convert ACE mode names used internally to to their human-readable counterparts and vise-versa.
@@ -25,12 +31,12 @@
 
  @return Array of ACE mode names.
  */
-+ (NSArray<NSString *> *) modeNames;
++ (NSArray OF_NSSTRING *) modeNames;
 /** Return an array of human-readable ACE mode names.
 
  @return Array of human-readable ACE mode names.
  */
-+ (NSArray<NSString *> *) humanModeNames;
++ (NSArray OF_NSSTRING *) humanModeNames;
 
 /** Return the ACE mode name for a given ACEmode constant.
 

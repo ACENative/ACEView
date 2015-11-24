@@ -7,6 +7,12 @@
 //
 #import <ACEView/ACEThemes.h>
 
+#if __has_feature(objc_generics)
+#define OF_NSSTRING <NSString *>
+#else
+#define OF_NSSTRING
+#endif
+
 /** Class providing methods to:
 
  - convert ACE theme names used internally to to their human-readable counterparts and vise-versa.
@@ -25,12 +31,12 @@
 
  @return Array of ACE theme names.
  */
-+ (NSArray<NSString *> *) themeNames;
++ (NSArray OF_NSSTRING *) themeNames;
 /** Return an array of human-readable ACE theme names.
 
  @return Array of human-readable ACE theme names.
  */
-+ (NSArray<NSString *> *) humanThemeNames;
++ (NSArray OF_NSSTRING *) humanThemeNames;
 
 /** Return the ACE theme name for a given ACETheme constant.
 
