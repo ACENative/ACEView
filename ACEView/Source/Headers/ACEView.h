@@ -270,6 +270,17 @@ extern NSString *const ACETextDidEndEditingNotification;
  
  */
 - (void) setShowPrintMargin:(BOOL)show;
+/** Sets annotations
+    Uses editor.getSession().setAnnotations()
+ 
+ @param annotations An array of dictionaries with annotation info, e.g.
+  @{    @"column": 0,
+        @"row": 3,
+        @"type": @"warning",
+        @"text": @"Some warning about something"
+ }
+ */
+- (void)setAnnotations:(NSArray *)annotations;
 /** Sets the font size.
 
  Uses [editor.setFontSize()](http://ace.ajax.org/#Editor.setFontSize).
