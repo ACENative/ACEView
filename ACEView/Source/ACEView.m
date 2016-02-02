@@ -376,6 +376,22 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setShowPrintMargin:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowPrintMargin(%@);", ACEStringFromBool(show)]];
 }
+
+- (void)setAnnotations:(NSArray *)annotations {
+    NSError *err;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:annotations
+                                                       options:kNilOptions
+                                                         error:&err];
+    if (!jsonData) {
+        NSLog(@"JSON encoding error: %@", [err localizedDescription]);
+        return;
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *js = [NSString stringWithFormat:@"editor.getSession().setAnnotations(%@);", jsonString];
+    
+    [self executeScriptWhenLoaded:js];
+}
+
 - (void) setFontSize:(NSUInteger)size {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setFontSize('%ldpx');", size]];
 }
