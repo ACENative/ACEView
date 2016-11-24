@@ -160,14 +160,32 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 - (void) webView:(WebView *)sender drawHeaderInRect:(NSRect)rect
 {
-    if ([delegate respondsToSelector:@selector(drawPrintHeaderForPage:inRect:)])
-        [delegate drawPrintHeaderForPage:(int)[printOperation currentPage] inRect:rect];
+    if ([delegate respondsToSelector:@selector(drawPrintHeaderForPage:inRect:)]) {
+        int                page = (int)[printOperation currentPage];
+        NSGraphicsContext *ctx  = [NSGraphicsContext currentContext];
+        if ([ctx isFlipped]) {
+            NSGraphicsContext *unflipped =
+                [NSGraphicsContext graphicsContextWithCGContext:[ctx CGContext] flipped:NO];
+            [NSGraphicsContext setCurrentContext:unflipped];
+        }
+        [delegate drawPrintHeaderForPage:page inRect:rect];
+        [NSGraphicsContext setCurrentContext:ctx];
+    }
 }
 
 - (void) webView:(WebView *)sender drawFooterInRect:(NSRect)rect
 {
-    if ([delegate respondsToSelector:@selector(drawPrintFooterForPage:inRect:)])
-        [delegate drawPrintFooterForPage:(int)[printOperation currentPage] inRect:rect];
+    if ([delegate respondsToSelector:@selector(drawPrintFooterForPage:inRect:)]) {
+        int                page = (int)[printOperation currentPage];
+        NSGraphicsContext *ctx = [NSGraphicsContext currentContext];
+        if ([ctx isFlipped]) {
+            NSGraphicsContext *unflipped =
+            [NSGraphicsContext graphicsContextWithCGContext:[ctx CGContext] flipped:NO];
+            [NSGraphicsContext setCurrentContext:unflipped];
+        }
+        [delegate drawPrintFooterForPage:page inRect:rect];
+        [NSGraphicsContext setCurrentContext:ctx];
+    }
 }
 
 #pragma mark - NSTextFinderClient methods
